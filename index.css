@@ -1,0 +1,96 @@
+html{
+    font-size: 16px;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+}
+
+body:has(#render_button){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* body:has(#render_button) button{
+ 
+} */
+
+#wrapper{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+#dining_room #trolls_container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:0.3rem;
+}
+
+#dining_room #trolls_container .troll{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex-basis: 10rem;
+    padding:1.5rem 0;
+    border:2px solid black;
+    background-color: white;
+}
+
+#bar #slots_container{
+    display: flex;
+    gap:0.3rem;
+}
+
+#bar #slots_container .slot{
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: 1.5rem;
+    text-align: center;
+    border:2px solid black;
+}
+
+#kitchen #prep_stations_container{
+    display: flex;
+    gap:0.3rem;
+}
+
+#kitchen #prep_stations_container .station{
+    padding: 1.5rem;
+    border:2px solid black;
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    height: fit-content;
+}
+
+#inventory #edibles_container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:0.3rem;
+}
+
+#inventory #edibles_container > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex-basis: 10rem;
+    padding:1.5rem 0;
+    border:2px solid black;
+    background-color: white;
+}
+
+
+@media only screen and (max-width: 1600px) {
+    html{
+        font-size: 14px;
+    }
+}
