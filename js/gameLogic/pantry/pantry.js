@@ -1,6 +1,5 @@
 import { EdibleBlueprint } from "./edibles/edibleBlueprint.js";
 import { globals } from "../../utils/globals.js";
-import { PubSub } from "../../utils/pubsub.js";
 
 export class Pantry{
     constructor(instanceAmount){
@@ -21,23 +20,3 @@ export class Pantry{
         return pantry;
     }  
 }
-//Pubsub Unnesserya
-PubSub.subscribe({
-    event: "sendDataToDb",
-    listener: (details) => {
-        const {entityAmount, childInstanceAmount} = details;
-
-        const pantries = [];
-        const url = "../API/pantries.php";
-
-        for(let i = 0; i < entityAmount; i++){
-            const pantry = new Pantry(childInstanceAmount);
-            pantries.push(pantry.pantry);
-        }
-
-        PubSub.publish({
-            event: "sendDataToState",
-            details: {"data": pantries, url, "type": "pantry"}
-        });
-    }
-});

@@ -1,12 +1,12 @@
-import { PubSub } from "../../../utils/pubsub.js";
+import { PubSub } from "../../utils/pubsub.js";
 
 class Troll{
     static trollInstances = [];
 
     constructor(details){
-        const {troll, id, parentSelector} = details;
-        this.parent = document.querySelector(parentSelector);
-        this.troll = troll;
+        const {data, id, parentId} = details;
+        this.parent = document.querySelector(parentId);
+        this.troll = data;
         this.id = id;
         this.element = this.create();
         Troll.trollInstances.push(this);

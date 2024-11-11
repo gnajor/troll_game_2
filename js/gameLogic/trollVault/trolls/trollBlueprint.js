@@ -4,7 +4,6 @@ export class TrollBlueprint{
     static registeredClasses = [];
 
     constructor(ingredients){
-
         ingredients.forEach(ingredient => {
             const ingredientAmount = globals.generateRandomDouble(ingredient.min, ingredient.max);
 

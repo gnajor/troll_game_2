@@ -24,11 +24,11 @@ if($request_method === "POST"){
 
     foreach($pantries as $index => $pantry){
         $name = $index + 1;
-        file_put_contents("./DB/pantry_$name.json", json_encode($pantry, JSON_PRETTY_PRINT));
+        file_put_contents("./db/pantry_$name.json", json_encode($pantry, JSON_PRETTY_PRINT));
     }
     send_as_json(201, [
         "success" => "Pantries was created",
-        "resource" => $pantries[0]
+        "resource" => $pantries
     ]);
 }
 
@@ -36,7 +36,7 @@ if($request_method === "GET"){
     $param = $_GET["pantry"];
 
     if(isset($param)){
-        $pantry = json_decode(file_get_contents("./DB/pantry_$param.json"), true);
+        $pantry = json_decode(file_get_contents("./db/pantry_$param.json"), true);
         send_as_json(200, $pantry);
     }
 }

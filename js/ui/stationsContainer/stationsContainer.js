@@ -21,13 +21,12 @@ function renderStationsContainer(details){
             event: renderStationEvent,
             details: {
                 "data": data[i], 
-                "parentSelector": "#" + elementId, 
+                "parentId": "#" + stationsContainer.id, 
                 "id": i + 1,
             }
         });
     }
 }
-
 
 PubSub.subscribe({
     event: "renderDiningRoom",

@@ -44,12 +44,12 @@ body:has(#render_button){
     background-color: white;
 }
 
-#bar #slots_container{
+#bar #bar_stations_container{
     display: flex;
     gap:0.3rem;
 }
 
-#bar #slots_container .slot{
+#bar #bar_stations_container .barStation{
     flex-basis: 0;
     flex-grow: 1;
     padding: 1.5rem;

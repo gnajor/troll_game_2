@@ -1,18 +1,21 @@
+import { PubSub } from "../../../utils/pubsub.js";
+
 class BarStation{
     constructor(details){
-        const {parentSelector, id} = details;
-        this.parent = document.querySelector(parentSelector);
-        this.id = id;
-        this.renderSlot();
+        this.parent = document.querySelector(details.parentId);
+        console.log(details)
+
+        this.id = details.id;
+        this.renderBar();
     }
 
-    renderSlot(){
+    renderBar(){
         if(this.parent){
-            const slot = document.createElement("div");
-            this.parent.appendChild(slot);
-            slot.className = "slot";
-            slot.id = "slot" + (this.id + 1);
-            slot.textContent = "slot_" + this.id;
+            const barStation = document.createElement("div");
+            this.parent.appendChild(barStation);
+            barStation.className = "barStation";
+            barStation.id = "barStation" + (this.id + 1);
+            barStation.textContent = "barStation_" + this.id;
 
             //slot.addEventListener("")
         }
@@ -27,8 +30,8 @@ class BarStation{
 }
 
 PubSub.subscribe({
-    event: "renderSlot",
+    event: "renderBarStations",
     listener: (details) => {
-        const slot = new Slot(details);
+        const slot = new BarStation(details);
     } 
 });

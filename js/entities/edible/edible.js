@@ -4,9 +4,9 @@ export class Edible{
     static edibleInstances = [];
 
     constructor(details){
-        const {edible, parentSelector, id} = details;
-        this.parent = document.querySelector(parentSelector);
-        this.edible = edible;
+        const {data, parentId, id} = details;
+        this.parent = document.querySelector(parentId);
+        this.edible = data;
         this.id = id;
         this.element = this.create();
         Edible.edibleInstances.push(this);
@@ -23,7 +23,10 @@ export class Edible{
 
     render(){
         this.parent.appendChild(this.element);
+        //add parent
+        //then render it with new parent
 
+        //this will render again
         for(let ingredient of this.edible.ingredients){
             this.renderIngredients(ingredient, this.element);
         }

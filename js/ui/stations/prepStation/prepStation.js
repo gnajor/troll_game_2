@@ -1,10 +1,13 @@
+import { PubSub } from "../../../utils/pubsub.js";
+import { Edible } from "../../../entities/edible/edible.js";
+
 class PrepStation{
     beingUsed = false;
 
     constructor(details){
-        const {parentSelector, prep} = details
-        this.parent = document.querySelector(parentSelector);
-        this.prep = prep;
+        const {parentId, data} = details
+        this.parent = document.querySelector(parentId);
+        this.prep = data;
         this.renderPrepStation();
     }
 
@@ -30,7 +33,9 @@ class PrepStation{
         const process = edibleInstance.edible.processes[0].preparation;
         
         if(process === this.prep && !this.beingUsed){
-            event.target.appendChild(edibleInstance.element);
+            edibleInstance.parent = event.target;
+            edibleInstance.render();
+
             this.beingUsed = true;
         }
     }

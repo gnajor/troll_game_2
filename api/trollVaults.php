@@ -24,12 +24,12 @@ if($request_method === "POST"){
 
     foreach($trollVaults as $index => $trollVault){
         $name = $index + 1;
-        file_put_contents("./DB/trollVault$name.json", json_encode($trollVault, JSON_PRETTY_PRINT));
+        file_put_contents("./db/trollVault$name.json", json_encode($trollVault, JSON_PRETTY_PRINT));
     }
     
     send_as_json(201, [
         "success" => "Troll groups was created",
-        "resource" => $trollVaults[0]
+        "resource" => $trollVaults
     ]);
 }
 
@@ -37,7 +37,7 @@ if($request_method === "GET"){
     $param = $_GET["trollVault"];
 
     if(isset($param)){
-        $trollVault = json_decode(file_get_contents("./DB/trollVault$param.json"), true);
+        $trollVault = json_decode(file_get_contents("./db/trollVault$param.json"), true);
         send_as_json(200, $trollVault);
     }
 }
