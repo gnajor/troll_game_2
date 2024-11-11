@@ -7,3 +7,28 @@ PubSub.publish({
     event: "renderStructure",
     details: "body"
 });
+
+
+
+async function postToDatabase(){
+    
+}
+
+
+
+
+async function fetcher(request){
+    try {
+        const response = await fetch(request);
+        const responseData = {
+            ok: response.ok,
+            status: response.status,
+            data: await response.json()
+        };
+
+        return responseData
+    } 
+    catch {
+        console.error("Fetch error");
+    }
+}

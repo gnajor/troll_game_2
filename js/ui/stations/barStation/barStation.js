@@ -1,4 +1,4 @@
-class Slot{
+class BarStation{
     constructor(details){
         const {parentSelector, id} = details;
         this.parent = document.querySelector(parentSelector);

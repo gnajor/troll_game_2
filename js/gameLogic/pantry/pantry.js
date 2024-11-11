@@ -21,9 +21,9 @@ export class Pantry{
         return pantry;
     }  
 }
-
+//Pubsub Unnesserya
 PubSub.subscribe({
-    event: "sendNeededDataToState",
+    event: "sendDataToDb",
     listener: (details) => {
         const {entityAmount, childInstanceAmount} = details;
 
