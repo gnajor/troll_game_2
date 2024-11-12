@@ -1,30 +1,288 @@
 [
     {
-        "edible": "Banzine",
+        "edible": "Tejuel",
         "ingredients": [
             {
+                "name": "Norb",
+                "amount": 0.49
+            },
+            {
+                "name": "Bilsno",
+                "amount": 0.1
+            },
+            {
                 "name": "Airps",
-                "amount": 0.62
+                "amount": 0.42
+            },
+            {
+                "name": "Nerb",
+                "amount": 0.52
+            },
+            {
+                "name": "Swarwa",
+                "amount": 0.27
+            },
+            {
+                "name": "Lishenki",
+                "amount": 0.58
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Microwaved",
+                "time": 10
+            },
+            {
+                "transformation": "Lasts",
+                "time": 20
+            },
+            {
+                "disposal": "Taken out",
+                "time": 20
+            }
+        ]
+    },
+    {
+        "edible": "Menaza",
+        "ingredients": [
+            {
+                "name": "Dlonon",
+                "amount": 0.71
             },
             {
                 "name": "Nirbel",
-                "amount": 0.17
+                "amount": 0.44
             },
             {
-                "name": "Dlonon",
+                "name": "Emor",
+                "amount": 0.53
+            },
+            {
+                "name": "Nivane",
+                "amount": 0.5
+            },
+            {
+                "name": "Damsater",
+                "amount": 0.72
+            },
+            {
+                "name": "Lishenki",
+                "amount": 0.39
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Chilled",
+                "time": 15
+            },
+            {
+                "transformation": "Dried",
+                "time": 20
+            },
+            {
+                "disposal": "Remains",
+                "time": 0
+            }
+        ]
+    },
+    {
+        "edible": "Alubi",
+        "ingredients": [
+            {
+                "name": "Norb",
+                "amount": 0.37
+            },
+            {
+                "name": "Bilsno",
+                "amount": 0.79
+            },
+            {
+                "name": "Nivane",
+                "amount": 0.23
+            },
+            {
+                "name": "Dramid",
+                "amount": 0.52
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.62
+            },
+            {
+                "name": "Ragpue",
+                "amount": 0.24
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Microwaved",
+                "time": 30
+            },
+            {
+                "transformation": "Fermented",
+                "time": 20
+            },
+            {
+                "disposal": "Given away",
+                "time": 0
+            }
+        ]
+    },
+    {
+        "edible": "Tejuel",
+        "ingredients": [
+            {
+                "name": "Norb",
+                "amount": 0.4
+            },
+            {
+                "name": "Bilsno",
+                "amount": 0.27
+            },
+            {
+                "name": "Airps",
+                "amount": 0.44
+            },
+            {
+                "name": "Nerb",
                 "amount": 0.47
             },
             {
                 "name": "Swarwa",
-                "amount": 0.47
+                "amount": 0.34
+            },
+            {
+                "name": "Lishenki",
+                "amount": 0.26
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Microwaved",
+                "time": 10
+            },
+            {
+                "transformation": "Lasts",
+                "time": 20
+            },
+            {
+                "disposal": "Taken out",
+                "time": 20
+            }
+        ]
+    },
+    {
+        "edible": "Kalaba",
+        "ingredients": [
+            {
+                "name": "Airps",
+                "amount": 0.35
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.26
+            },
+            {
+                "name": "Bilsno",
+                "amount": 0.78
+            },
+            {
+                "name": "Damsater",
+                "amount": 0.63
+            },
+            {
+                "name": "Ragpue",
+                "amount": 0.82
+            },
+            {
+                "name": "Lishenki",
+                "amount": 0.51
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Grated",
+                "time": 20
+            },
+            {
+                "transformation": "Fermented",
+                "time": 20
+            },
+            {
+                "disposal": "Given away",
+                "time": 5
+            }
+        ]
+    },
+    {
+        "edible": "Poteit",
+        "ingredients": [
+            {
+                "name": "Norb",
+                "amount": 0.7
+            },
+            {
+                "name": "Bilsno",
+                "amount": 0.93
+            },
+            {
+                "name": "Nerb",
+                "amount": 0.68
+            },
+            {
+                "name": "Damsater",
+                "amount": 0.67
+            },
+            {
+                "name": "Swarwa",
+                "amount": 0.32
+            },
+            {
+                "name": "Sloo",
+                "amount": 0.46
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Fried",
+                "time": 15
+            },
+            {
+                "transformation": "Lasts",
+                "time": 20
+            },
+            {
+                "disposal": "Given away",
+                "time": 0
+            }
+        ]
+    },
+    {
+        "edible": "Banzine",
+        "ingredients": [
+            {
+                "name": "Airps",
+                "amount": 0.67
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.58
+            },
+            {
+                "name": "Dlonon",
+                "amount": 0.52
+            },
+            {
+                "name": "Swarwa",
+                "amount": 0.42
             },
             {
                 "name": "Gair",
-                "amount": 0.31
+                "amount": 0.49
             },
             {
                 "name": "Shenta",
-                "amount": 0.5
+                "amount": 0.29
             }
         ],
         "processes": [
@@ -47,27 +305,199 @@
         "ingredients": [
             {
                 "name": "Airps",
-                "amount": 0.54
+                "amount": 0.7
             },
             {
                 "name": "Nirbel",
-                "amount": 0.78
+                "amount": 0.59
             },
             {
                 "name": "Dramid",
-                "amount": 0.74
+                "amount": 0.51
             },
             {
                 "name": "Emor",
-                "amount": 0.26
+                "amount": 0.63
             },
             {
                 "name": "Nivane",
-                "amount": 0.8
+                "amount": 0.52
             },
             {
                 "name": "Sloo",
-                "amount": 0.32
+                "amount": 0.45
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Fried",
+                "time": 20
+            },
+            {
+                "transformation": "Rotten",
+                "time": 10
+            },
+            {
+                "disposal": "Remains",
+                "time": 0
+            }
+        ]
+    },
+    {
+        "edible": "Grusil",
+        "ingredients": [
+            {
+                "name": "Dlonon",
+                "amount": 0.47
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.36
+            },
+            {
+                "name": "Airps",
+                "amount": 0.48
+            },
+            {
+                "name": "Swarwa",
+                "amount": 0.41
+            },
+            {
+                "name": "Dramid",
+                "amount": 0.46
+            },
+            {
+                "name": "Ragpue",
+                "amount": 0.37
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Boiled",
+                "time": 10
+            },
+            {
+                "transformation": "Fermented",
+                "time": 10
+            },
+            {
+                "disposal": "Given away",
+                "time": 5
+            }
+        ]
+    },
+    {
+        "edible": "Zerez",
+        "ingredients": [
+            {
+                "name": "Dlonon",
+                "amount": 0.25
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.4
+            },
+            {
+                "name": "Emor",
+                "amount": 0.48
+            },
+            {
+                "name": "Swarwa",
+                "amount": 0.3
+            },
+            {
+                "name": "Damsater",
+                "amount": 0.46
+            },
+            {
+                "name": "Norb",
+                "amount": 0.25
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Boiled",
+                "time": 20
+            },
+            {
+                "transformation": "Dried",
+                "time": 10
+            },
+            {
+                "disposal": "Remains",
+                "time": 0
+            }
+        ]
+    },
+    {
+        "edible": "Banzine",
+        "ingredients": [
+            {
+                "name": "Airps",
+                "amount": 0.58
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.9
+            },
+            {
+                "name": "Dlonon",
+                "amount": 0.45
+            },
+            {
+                "name": "Swarwa",
+                "amount": 0.39
+            },
+            {
+                "name": "Gair",
+                "amount": 0.65
+            },
+            {
+                "name": "Shenta",
+                "amount": 0.22
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Chilled",
+                "time": 20
+            },
+            {
+                "transformation": "Dried",
+                "time": 15
+            },
+            {
+                "disposal": "Taken out",
+                "time": 10
+            }
+        ]
+    },
+    {
+        "edible": "Zanahoo",
+        "ingredients": [
+            {
+                "name": "Airps",
+                "amount": 0.68
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.46
+            },
+            {
+                "name": "Dramid",
+                "amount": 0.64
+            },
+            {
+                "name": "Emor",
+                "amount": 0.44
+            },
+            {
+                "name": "Nivane",
+                "amount": 0.63
+            },
+            {
+                "name": "Sloo",
+                "amount": 0.45
             }
         ],
         "processes": [
@@ -90,457 +520,27 @@
         "ingredients": [
             {
                 "name": "Norb",
-                "amount": 0.69
+                "amount": 0.51
             },
             {
                 "name": "Bilsno",
-                "amount": 0.92
+                "amount": 0.29
             },
             {
                 "name": "Nerb",
-                "amount": 0.83
+                "amount": 0.59
             },
             {
                 "name": "Damsater",
-                "amount": 0.62
-            },
-            {
-                "name": "Swarwa",
-                "amount": 0.13
-            },
-            {
-                "name": "Sloo",
-                "amount": 0.45
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Fried",
-                "time": 15
-            },
-            {
-                "transformation": "Lasts",
-                "time": 20
-            },
-            {
-                "disposal": "Given away",
-                "time": 0
-            }
-        ]
-    },
-    {
-        "edible": "Frisa",
-        "ingredients": [
-            {
-                "name": "Dlonon",
-                "amount": 0.98
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.21
-            },
-            {
-                "name": "Emor",
-                "amount": 0.28
-            },
-            {
-                "name": "Gair",
                 "amount": 0.7
-            },
-            {
-                "name": "Ragpue",
-                "amount": 0.65
-            },
-            {
-                "name": "Nivane",
-                "amount": 0.68
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Fried",
-                "time": 15
-            },
-            {
-                "transformation": "Rotten",
-                "time": 15
-            },
-            {
-                "disposal": "Taken out",
-                "time": 15
-            }
-        ]
-    },
-    {
-        "edible": "Zerez",
-        "ingredients": [
-            {
-                "name": "Dlonon",
-                "amount": 0.88
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.65
-            },
-            {
-                "name": "Emor",
-                "amount": 0.54
-            },
-            {
-                "name": "Swarwa",
-                "amount": 0.39
-            },
-            {
-                "name": "Damsater",
-                "amount": 0.56
-            },
-            {
-                "name": "Norb",
-                "amount": 0.23
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Boiled",
-                "time": 20
-            },
-            {
-                "transformation": "Dried",
-                "time": 10
-            },
-            {
-                "disposal": "Remains",
-                "time": 0
-            }
-        ]
-    },
-    {
-        "edible": "Frisa",
-        "ingredients": [
-            {
-                "name": "Dlonon",
-                "amount": 0.93
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.32
-            },
-            {
-                "name": "Emor",
-                "amount": 0.33
-            },
-            {
-                "name": "Gair",
-                "amount": 0.67
-            },
-            {
-                "name": "Ragpue",
-                "amount": 0.13
-            },
-            {
-                "name": "Nivane",
-                "amount": 0.68
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Fried",
-                "time": 15
-            },
-            {
-                "transformation": "Rotten",
-                "time": 15
-            },
-            {
-                "disposal": "Taken out",
-                "time": 15
-            }
-        ]
-    },
-    {
-        "edible": "Zerez",
-        "ingredients": [
-            {
-                "name": "Dlonon",
-                "amount": 0.37
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.42
-            },
-            {
-                "name": "Emor",
-                "amount": 0.2
             },
             {
                 "name": "Swarwa",
                 "amount": 0.35
             },
             {
-                "name": "Damsater",
-                "amount": 0.59
-            },
-            {
-                "name": "Norb",
-                "amount": 0.26
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Boiled",
-                "time": 20
-            },
-            {
-                "transformation": "Dried",
-                "time": 10
-            },
-            {
-                "disposal": "Remains",
-                "time": 0
-            }
-        ]
-    },
-    {
-        "edible": "Banzine",
-        "ingredients": [
-            {
-                "name": "Airps",
-                "amount": 0.56
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.81
-            },
-            {
-                "name": "Dlonon",
-                "amount": 0.55
-            },
-            {
-                "name": "Swarwa",
-                "amount": 0.46
-            },
-            {
-                "name": "Gair",
-                "amount": 0.24
-            },
-            {
-                "name": "Shenta",
-                "amount": 0.34
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Chilled",
-                "time": 20
-            },
-            {
-                "transformation": "Dried",
-                "time": 15
-            },
-            {
-                "disposal": "Taken out",
-                "time": 10
-            }
-        ]
-    },
-    {
-        "edible": "Grusil",
-        "ingredients": [
-            {
-                "name": "Dlonon",
-                "amount": 0.4
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.65
-            },
-            {
-                "name": "Airps",
-                "amount": 0.86
-            },
-            {
-                "name": "Swarwa",
-                "amount": 0.51
-            },
-            {
-                "name": "Dramid",
-                "amount": 0.42
-            },
-            {
-                "name": "Ragpue",
-                "amount": 0.32
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Boiled",
-                "time": 10
-            },
-            {
-                "transformation": "Fermented",
-                "time": 10
-            },
-            {
-                "disposal": "Given away",
-                "time": 5
-            }
-        ]
-    },
-    {
-        "edible": "Alubi",
-        "ingredients": [
-            {
-                "name": "Norb",
-                "amount": 0.37
-            },
-            {
-                "name": "Bilsno",
-                "amount": 0.66
-            },
-            {
-                "name": "Nivane",
-                "amount": 0.48
-            },
-            {
-                "name": "Dramid",
-                "amount": 0.45
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.41
-            },
-            {
-                "name": "Ragpue",
-                "amount": 0.22
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Microwaved",
-                "time": 30
-            },
-            {
-                "transformation": "Fermented",
-                "time": 20
-            },
-            {
-                "disposal": "Given away",
-                "time": 0
-            }
-        ]
-    },
-    {
-        "edible": "Kalaba",
-        "ingredients": [
-            {
-                "name": "Airps",
-                "amount": 0.32
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.62
-            },
-            {
-                "name": "Bilsno",
-                "amount": 0.47
-            },
-            {
-                "name": "Damsater",
-                "amount": 0.48
-            },
-            {
-                "name": "Ragpue",
-                "amount": 0.75
-            },
-            {
-                "name": "Lishenki",
-                "amount": 0.48
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Grated",
-                "time": 20
-            },
-            {
-                "transformation": "Fermented",
-                "time": 20
-            },
-            {
-                "disposal": "Given away",
-                "time": 5
-            }
-        ]
-    },
-    {
-        "edible": "Tejuel",
-        "ingredients": [
-            {
-                "name": "Norb",
-                "amount": 0.48
-            },
-            {
-                "name": "Bilsno",
-                "amount": 0.26
-            },
-            {
-                "name": "Airps",
-                "amount": 0.64
-            },
-            {
-                "name": "Nerb",
-                "amount": 0.67
-            },
-            {
-                "name": "Swarwa",
-                "amount": 0.26
-            },
-            {
-                "name": "Lishenki",
-                "amount": 0.68
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Microwaved",
-                "time": 10
-            },
-            {
-                "transformation": "Lasts",
-                "time": 20
-            },
-            {
-                "disposal": "Taken out",
-                "time": 20
-            }
-        ]
-    },
-    {
-        "edible": "Poteit",
-        "ingredients": [
-            {
-                "name": "Norb",
-                "amount": 0.25
-            },
-            {
-                "name": "Bilsno",
-                "amount": 0.85
-            },
-            {
-                "name": "Nerb",
-                "amount": 0.9
-            },
-            {
-                "name": "Damsater",
-                "amount": 0.52
-            },
-            {
-                "name": "Swarwa",
-                "amount": 0.28
-            },
-            {
                 "name": "Sloo",
-                "amount": 0.78
+                "amount": 0.42
             }
         ],
         "processes": [
@@ -559,74 +559,117 @@
         ]
     },
     {
-        "edible": "Tejuel",
+        "edible": "Zerez",
         "ingredients": [
             {
-                "name": "Norb",
-                "amount": 0.47
+                "name": "Dlonon",
+                "amount": 0.22
             },
             {
-                "name": "Bilsno",
+                "name": "Nirbel",
+                "amount": 0.64
+            },
+            {
+                "name": "Emor",
+                "amount": 0.56
+            },
+            {
+                "name": "Swarwa",
+                "amount": 0.31
+            },
+            {
+                "name": "Damsater",
+                "amount": 0.65
+            },
+            {
+                "name": "Norb",
+                "amount": 0.28
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Boiled",
+                "time": 20
+            },
+            {
+                "transformation": "Dried",
+                "time": 10
+            },
+            {
+                "disposal": "Remains",
+                "time": 0
+            }
+        ]
+    },
+    {
+        "edible": "Menaza",
+        "ingredients": [
+            {
+                "name": "Dlonon",
+                "amount": 0.71
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.57
+            },
+            {
+                "name": "Emor",
+                "amount": 0.61
+            },
+            {
+                "name": "Nivane",
+                "amount": 0.76
+            },
+            {
+                "name": "Damsater",
+                "amount": 0.76
+            },
+            {
+                "name": "Lishenki",
+                "amount": 0.65
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Chilled",
+                "time": 15
+            },
+            {
+                "transformation": "Dried",
+                "time": 20
+            },
+            {
+                "disposal": "Remains",
+                "time": 0
+            }
+        ]
+    },
+    {
+        "edible": "Grusil",
+        "ingredients": [
+            {
+                "name": "Dlonon",
+                "amount": 0.48
+            },
+            {
+                "name": "Nirbel",
                 "amount": 0.36
             },
             {
                 "name": "Airps",
-                "amount": 0.61
-            },
-            {
-                "name": "Nerb",
-                "amount": 0.41
+                "amount": 0.3
             },
             {
                 "name": "Swarwa",
-                "amount": 0.66
-            },
-            {
-                "name": "Lishenki",
-                "amount": 0.66
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Microwaved",
-                "time": 10
-            },
-            {
-                "transformation": "Lasts",
-                "time": 20
-            },
-            {
-                "disposal": "Taken out",
-                "time": 20
-            }
-        ]
-    },
-    {
-        "edible": "Grusil",
-        "ingredients": [
-            {
-                "name": "Dlonon",
-                "amount": 0.44
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.38
-            },
-            {
-                "name": "Airps",
-                "amount": 0.87
-            },
-            {
-                "name": "Swarwa",
-                "amount": 0.57
+                "amount": 0.48
             },
             {
                 "name": "Dramid",
-                "amount": 0.44
+                "amount": 0.45
             },
             {
                 "name": "Ragpue",
-                "amount": 0.39
+                "amount": 0.3
             }
         ],
         "processes": [
@@ -645,160 +688,31 @@
         ]
     },
     {
-        "edible": "Kalaba",
-        "ingredients": [
-            {
-                "name": "Airps",
-                "amount": 0.34
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.68
-            },
-            {
-                "name": "Bilsno",
-                "amount": 0.47
-            },
-            {
-                "name": "Damsater",
-                "amount": 0.6
-            },
-            {
-                "name": "Ragpue",
-                "amount": 0.87
-            },
-            {
-                "name": "Lishenki",
-                "amount": 0.34
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Grated",
-                "time": 20
-            },
-            {
-                "transformation": "Fermented",
-                "time": 20
-            },
-            {
-                "disposal": "Given away",
-                "time": 5
-            }
-        ]
-    },
-    {
-        "edible": "Menaza",
-        "ingredients": [
-            {
-                "name": "Dlonon",
-                "amount": 0.8
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.45
-            },
-            {
-                "name": "Emor",
-                "amount": 0.66
-            },
-            {
-                "name": "Nivane",
-                "amount": 0.77
-            },
-            {
-                "name": "Damsater",
-                "amount": 0.49
-            },
-            {
-                "name": "Lishenki",
-                "amount": 0.52
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Chilled",
-                "time": 15
-            },
-            {
-                "transformation": "Dried",
-                "time": 20
-            },
-            {
-                "disposal": "Remains",
-                "time": 0
-            }
-        ]
-    },
-    {
-        "edible": "Menaza",
-        "ingredients": [
-            {
-                "name": "Dlonon",
-                "amount": 0.67
-            },
-            {
-                "name": "Nirbel",
-                "amount": 0.54
-            },
-            {
-                "name": "Emor",
-                "amount": 0.54
-            },
-            {
-                "name": "Nivane",
-                "amount": 0.34
-            },
-            {
-                "name": "Damsater",
-                "amount": 0.41
-            },
-            {
-                "name": "Lishenki",
-                "amount": 0.76
-            }
-        ],
-        "processes": [
-            {
-                "preparation": "Chilled",
-                "time": 15
-            },
-            {
-                "transformation": "Dried",
-                "time": 20
-            },
-            {
-                "disposal": "Remains",
-                "time": 0
-            }
-        ]
-    },
-    {
         "edible": "Alubi",
         "ingredients": [
             {
                 "name": "Norb",
-                "amount": 0.42
+                "amount": 0.33
             },
             {
                 "name": "Bilsno",
-                "amount": 0.34
+                "amount": 0.74
             },
             {
                 "name": "Nivane",
-                "amount": 0.86
+                "amount": 0.33
             },
             {
                 "name": "Dramid",
-                "amount": 0.66
+                "amount": 0.53
             },
             {
                 "name": "Nirbel",
-                "amount": 0.68
+                "amount": 0.48
             },
             {
                 "name": "Ragpue",
-                "amount": 0.4
+                "amount": 0.28
             }
         ],
         "processes": [
@@ -817,45 +731,131 @@
         ]
     },
     {
-        "edible": "Zanahoo",
+        "edible": "Frisa",
         "ingredients": [
             {
-                "name": "Airps",
-                "amount": 0.51
+                "name": "Dlonon",
+                "amount": 0.96
             },
             {
                 "name": "Nirbel",
-                "amount": 0.68
-            },
-            {
-                "name": "Dramid",
-                "amount": 0.82
+                "amount": 0.26
             },
             {
                 "name": "Emor",
-                "amount": 0.67
+                "amount": 0.4
+            },
+            {
+                "name": "Gair",
+                "amount": 0.52
+            },
+            {
+                "name": "Ragpue",
+                "amount": 0.13
             },
             {
                 "name": "Nivane",
-                "amount": 0.7
-            },
-            {
-                "name": "Sloo",
-                "amount": 0.33
+                "amount": 0.59
             }
         ],
         "processes": [
             {
                 "preparation": "Fried",
-                "time": 20
+                "time": 15
             },
             {
                 "transformation": "Rotten",
-                "time": 10
+                "time": 15
             },
             {
-                "disposal": "Remains",
-                "time": 0
+                "disposal": "Taken out",
+                "time": 15
+            }
+        ]
+    },
+    {
+        "edible": "Frisa",
+        "ingredients": [
+            {
+                "name": "Dlonon",
+                "amount": 0.97
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.26
+            },
+            {
+                "name": "Emor",
+                "amount": 0.38
+            },
+            {
+                "name": "Gair",
+                "amount": 0.53
+            },
+            {
+                "name": "Ragpue",
+                "amount": 0.58
+            },
+            {
+                "name": "Nivane",
+                "amount": 0.55
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Fried",
+                "time": 15
+            },
+            {
+                "transformation": "Rotten",
+                "time": 15
+            },
+            {
+                "disposal": "Taken out",
+                "time": 15
+            }
+        ]
+    },
+    {
+        "edible": "Kalaba",
+        "ingredients": [
+            {
+                "name": "Airps",
+                "amount": 0.36
+            },
+            {
+                "name": "Nirbel",
+                "amount": 0.58
+            },
+            {
+                "name": "Bilsno",
+                "amount": 0.6
+            },
+            {
+                "name": "Damsater",
+                "amount": 0.52
+            },
+            {
+                "name": "Ragpue",
+                "amount": 0.59
+            },
+            {
+                "name": "Lishenki",
+                "amount": 0.64
+            }
+        ],
+        "processes": [
+            {
+                "preparation": "Grated",
+                "time": 20
+            },
+            {
+                "transformation": "Fermented",
+                "time": 20
+            },
+            {
+                "disposal": "Given away",
+                "time": 5
             }
         ]
     }

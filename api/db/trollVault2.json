@@ -5,62 +5,32 @@
             {
                 "name": "Sloo",
                 "preference": "neutral",
-                "amount": 0.42
+                "amount": 0.61
             },
             {
                 "name": "Airps",
                 "preference": "likes",
-                "amount": 0.65
+                "amount": 0.19
             },
             {
                 "name": "Bilsno",
                 "preference": "dislikes",
-                "amount": 0.78
+                "amount": 0.32
             },
             {
                 "name": "Damsater",
                 "preference": "favorite",
-                "amount": 0.53
+                "amount": 0.49
             },
             {
                 "name": "Dlonon",
                 "preference": "neutral",
-                "amount": 0.47
+                "amount": 0.48
             },
             {
                 "name": "Emor",
                 "preference": "neutral",
-                "amount": 0.12
-            }
-        ]
-    },
-    {
-        "troll": "Mossgrumble",
-        "ingredients": [
-            {
-                "name": "Nerb",
-                "preference": "neutral",
-                "amount": 0.46
-            },
-            {
-                "name": "Nivane",
-                "preference": "likes",
-                "amount": 0.43
-            },
-            {
-                "name": "Norb",
-                "preference": "dislikes",
-                "amount": 0.44
-            },
-            {
-                "name": "Ragpue",
-                "preference": "favorite",
-                "amount": 0.41
-            },
-            {
-                "name": "Shenta",
-                "preference": "neutral",
-                "amount": 0.29
+                "amount": 0.24
             }
         ]
     },
@@ -70,17 +40,232 @@
             {
                 "name": "Dramid",
                 "preference": "neutral",
-                "amount": 0.32
+                "amount": 0.5
             },
             {
                 "name": "Emor",
                 "preference": "likes",
-                "amount": 0.5
+                "amount": 0.71
             },
             {
                 "name": "Gair",
                 "preference": "dislikes",
+                "amount": 0.86
+            },
+            {
+                "name": "Lishenki",
+                "preference": "favorite",
+                "amount": 0.4
+            }
+        ]
+    },
+    {
+        "troll": "Gnarroot",
+        "ingredients": [
+            {
+                "name": "Airps",
+                "preference": "neutral",
+                "amount": 0.63
+            },
+            {
+                "name": "Bilsno",
+                "preference": "likes",
+                "amount": 0.56
+            },
+            {
+                "name": "Dlonon",
+                "preference": "dislikes",
+                "amount": 0.48
+            },
+            {
+                "name": "Nirbel",
+                "preference": "favorite",
+                "amount": 0.43
+            },
+            {
+                "name": "Swarwa",
+                "preference": "neutral",
                 "amount": 0.41
+            }
+        ]
+    },
+    {
+        "troll": "Stonefoot",
+        "ingredients": [
+            {
+                "name": "Gair",
+                "preference": "neutral",
+                "amount": 0.52
+            },
+            {
+                "name": "Lishenki",
+                "preference": "likes",
+                "amount": 0.3
+            },
+            {
+                "name": "Nerb",
+                "preference": "dislikes",
+                "amount": 0.4
+            },
+            {
+                "name": "Nirbel",
+                "preference": "favorite",
+                "amount": 0.48
+            },
+            {
+                "name": "Nivane",
+                "preference": "neutral",
+                "amount": 0.47
+            },
+            {
+                "name": "Norb",
+                "preference": "neutral",
+                "amount": 0.39
+            }
+        ]
+    },
+    {
+        "troll": "Barkhide",
+        "ingredients": [
+            {
+                "name": "Sloo",
+                "preference": "neutral",
+                "amount": 0.46
+            },
+            {
+                "name": "Airps",
+                "preference": "likes",
+                "amount": 0.1
+            },
+            {
+                "name": "Bilsno",
+                "preference": "dislikes",
+                "amount": 0.51
+            },
+            {
+                "name": "Damsater",
+                "preference": "favorite",
+                "amount": 0.5
+            },
+            {
+                "name": "Dlonon",
+                "preference": "neutral",
+                "amount": 0.28
+            },
+            {
+                "name": "Emor",
+                "preference": "neutral",
+                "amount": 0.16
+            }
+        ]
+    },
+    {
+        "troll": "Mossgrumble",
+        "ingredients": [
+            {
+                "name": "Nerb",
+                "preference": "neutral",
+                "amount": 0.54
+            },
+            {
+                "name": "Nivane",
+                "preference": "likes",
+                "amount": 0.55
+            },
+            {
+                "name": "Norb",
+                "preference": "dislikes",
+                "amount": 0.87
+            },
+            {
+                "name": "Ragpue",
+                "preference": "favorite",
+                "amount": 0.5
+            },
+            {
+                "name": "Shenta",
+                "preference": "neutral",
+                "amount": 0.45
+            }
+        ]
+    },
+    {
+        "troll": "Mossgrumble",
+        "ingredients": [
+            {
+                "name": "Nerb",
+                "preference": "neutral",
+                "amount": 0.75
+            },
+            {
+                "name": "Nivane",
+                "preference": "likes",
+                "amount": 0.43
+            },
+            {
+                "name": "Norb",
+                "preference": "dislikes",
+                "amount": 0.71
+            },
+            {
+                "name": "Ragpue",
+                "preference": "favorite",
+                "amount": 0.53
+            },
+            {
+                "name": "Shenta",
+                "preference": "neutral",
+                "amount": 0.31
+            }
+        ]
+    },
+    {
+        "troll": "Gnarroot",
+        "ingredients": [
+            {
+                "name": "Airps",
+                "preference": "neutral",
+                "amount": 0.55
+            },
+            {
+                "name": "Bilsno",
+                "preference": "likes",
+                "amount": 0.66
+            },
+            {
+                "name": "Dlonon",
+                "preference": "dislikes",
+                "amount": 0.76
+            },
+            {
+                "name": "Nirbel",
+                "preference": "favorite",
+                "amount": 0.53
+            },
+            {
+                "name": "Swarwa",
+                "preference": "neutral",
+                "amount": 0.19
+            }
+        ]
+    },
+    {
+        "troll": "Thornclaw",
+        "ingredients": [
+            {
+                "name": "Dramid",
+                "preference": "neutral",
+                "amount": 0.64
+            },
+            {
+                "name": "Emor",
+                "preference": "likes",
+                "amount": 0.76
+            },
+            {
+                "name": "Gair",
+                "preference": "dislikes",
+                "amount": 0.79
             },
             {
                 "name": "Lishenki",
@@ -95,72 +280,7 @@
             {
                 "name": "Gair",
                 "preference": "neutral",
-                "amount": 0.67
-            },
-            {
-                "name": "Lishenki",
-                "preference": "likes",
-                "amount": 0.37
-            },
-            {
-                "name": "Nerb",
-                "preference": "dislikes",
-                "amount": 0.71
-            },
-            {
-                "name": "Nirbel",
-                "preference": "favorite",
-                "amount": 0.42
-            },
-            {
-                "name": "Nivane",
-                "preference": "neutral",
-                "amount": 0.32
-            },
-            {
-                "name": "Norb",
-                "preference": "neutral",
-                "amount": 0.35
-            }
-        ]
-    },
-    {
-        "troll": "Gnarroot",
-        "ingredients": [
-            {
-                "name": "Airps",
-                "preference": "neutral",
-                "amount": 0.45
-            },
-            {
-                "name": "Bilsno",
-                "preference": "likes",
-                "amount": 0.37
-            },
-            {
-                "name": "Dlonon",
-                "preference": "dislikes",
-                "amount": 0.84
-            },
-            {
-                "name": "Nirbel",
-                "preference": "favorite",
-                "amount": 0.5
-            },
-            {
-                "name": "Swarwa",
-                "preference": "neutral",
-                "amount": 0.31
-            }
-        ]
-    },
-    {
-        "troll": "Stonefoot",
-        "ingredients": [
-            {
-                "name": "Gair",
-                "preference": "neutral",
-                "amount": 0.21
+                "amount": 0.73
             },
             {
                 "name": "Lishenki",
@@ -170,142 +290,22 @@
             {
                 "name": "Nerb",
                 "preference": "dislikes",
-                "amount": 0.76
-            },
-            {
-                "name": "Nirbel",
-                "preference": "favorite",
-                "amount": 0.58
-            },
-            {
-                "name": "Nivane",
-                "preference": "neutral",
-                "amount": 0.28
-            },
-            {
-                "name": "Norb",
-                "preference": "neutral",
-                "amount": 0.17
-            }
-        ]
-    },
-    {
-        "troll": "Mossgrumble",
-        "ingredients": [
-            {
-                "name": "Nerb",
-                "preference": "neutral",
-                "amount": 0.59
-            },
-            {
-                "name": "Nivane",
-                "preference": "likes",
-                "amount": 0.67
-            },
-            {
-                "name": "Norb",
-                "preference": "dislikes",
-                "amount": 0.46
-            },
-            {
-                "name": "Ragpue",
-                "preference": "favorite",
-                "amount": 0.43
-            },
-            {
-                "name": "Shenta",
-                "preference": "neutral",
-                "amount": 0.35
-            }
-        ]
-    },
-    {
-        "troll": "Barkhide",
-        "ingredients": [
-            {
-                "name": "Sloo",
-                "preference": "neutral",
-                "amount": 0.62
-            },
-            {
-                "name": "Airps",
-                "preference": "likes",
-                "amount": 0.63
-            },
-            {
-                "name": "Bilsno",
-                "preference": "dislikes",
-                "amount": 0.32
-            },
-            {
-                "name": "Damsater",
-                "preference": "favorite",
-                "amount": 0.44
-            },
-            {
-                "name": "Dlonon",
-                "preference": "neutral",
-                "amount": 0.23
-            },
-            {
-                "name": "Emor",
-                "preference": "neutral",
-                "amount": 0.15
-            }
-        ]
-    },
-    {
-        "troll": "Thornclaw",
-        "ingredients": [
-            {
-                "name": "Dramid",
-                "preference": "neutral",
-                "amount": 0.27
-            },
-            {
-                "name": "Emor",
-                "preference": "likes",
-                "amount": 0.15
-            },
-            {
-                "name": "Gair",
-                "preference": "dislikes",
-                "amount": 0.81
-            },
-            {
-                "name": "Lishenki",
-                "preference": "favorite",
-                "amount": 0.48
-            }
-        ]
-    },
-    {
-        "troll": "Gnarroot",
-        "ingredients": [
-            {
-                "name": "Airps",
-                "preference": "neutral",
-                "amount": 0.68
-            },
-            {
-                "name": "Bilsno",
-                "preference": "likes",
-                "amount": 0.11
-            },
-            {
-                "name": "Dlonon",
-                "preference": "dislikes",
-                "amount": 0.62
-            },
-            {
-                "name": "Nirbel",
-                "preference": "favorite",
                 "amount": 0.52
             },
             {
-                "name": "Swarwa",
+                "name": "Nirbel",
+                "preference": "favorite",
+                "amount": 0.41
+            },
+            {
+                "name": "Nivane",
                 "preference": "neutral",
                 "amount": 0.43
+            },
+            {
+                "name": "Norb",
+                "preference": "neutral",
+                "amount": 0.16
             }
         ]
     }

@@ -1,4 +1,5 @@
 import { PubSub } from "../../utils/pubsub.js";
+import { Ingredient } from "../ingredient/ingredient.js";
 
 export class Edible{
     static edibleInstances = [];
@@ -9,38 +10,40 @@ export class Edible{
         this.edible = data;
         this.id = id;
         this.element = this.create();
+        this.beingProcessed = false;
         Edible.edibleInstances.push(this);
     }
 
     create(){
         const edibleElement = document.createElement("div");
         edibleElement.id = "edible_" + this.id;
-        edibleElement.textContent = this.edible.edible + ` (${this.edible.processes[0].preparation})`;
         edibleElement.setAttribute("draggable", true);
         edibleElement.addEventListener("dragstart", this.onDragStart.bind(this));
         return edibleElement;
     }
 
     render(){
+        this.element.innerHTML = "";
         this.parent.appendChild(this.element);
-        //add parent
-        //then render it with new parent
+        this.element.textContent = this.edible.edible + ` (${this.edible.processes[0].preparation})`;
 
-        //this will render again
-        for(let ingredient of this.edible.ingredients){
-            this.renderIngredients(ingredient, this.element);
+        for(let ingredientData of this.edible.ingredients){
+            const ingredient = new Ingredient({"data": ingredientData, "parent": this.element, "time": this.edible.processes[0].time});
+            ingredient.render();
         }
+    }
+
+    process(counter){
+        for(let ingredientData of this.edible.ingredients){
+            const ingredient = new Ingredient({"data": ingredientData, "parent": this.element, "time": this.edible.processes[0].time});
+            ingredient.process(counter);
+            this.render();
+        } 
+        //change ingredients
     }
 
     onDragStart(event){
         event.dataTransfer.setData("text/plain", this.id);
-    }
-
-    renderIngredients(ingredient){
-        const ingredientElement = document.createElement("div");
-        ingredientElement.className = ingredient.name;
-        ingredientElement.textContent = ingredient.name + ": " + ingredient.amount;
-        this.element.appendChild(ingredientElement);
     }
 }
 
