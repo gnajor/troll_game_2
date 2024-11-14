@@ -32,7 +32,7 @@ class PrepStation{
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
         const process = edibleInstance.edible.processes[0].preparation;
         
-        if(process === this.prepMethod && !this.beingUsed){
+        if(process === this.prepMethod && !this.beingUsed && !edibleInstance.processed){
             edibleInstance.parent = event.target;
             this.startPreperation(edibleInstance);
         }
@@ -43,7 +43,8 @@ class PrepStation{
         edibleInstance.render();
         edibleInstance.beingProcessed = true;
         this.beingUsed = true;
-
+        edibleInstance.process(this.elapsedTime);
+        
         this.intervalId = setInterval(() => {
             this.elapsedTime += 1;
             edibleInstance.process(this.elapsedTime);
@@ -60,7 +61,7 @@ class PrepStation{
         this.beingUsed = false;
         this.elapsedTime = 0;
         edibleInstance.beingProcessed = false;
-        /* edibleInstance.finishProcessing(); */
+        edibleInstance.finishProcessing();
     }
 }
 

@@ -11,6 +11,8 @@ export class Edible{
         this.id = id;
         this.element = this.create();
         this.beingProcessed = false;
+        this.beingTransformed = false;
+        this.processed = false;
         Edible.edibleInstances.push(this);
     }
 
@@ -19,6 +21,7 @@ export class Edible{
         edibleElement.id = "edible_" + this.id;
         edibleElement.setAttribute("draggable", true);
         edibleElement.addEventListener("dragstart", this.onDragStart.bind(this));
+        
         return edibleElement;
     }
 
@@ -28,18 +31,48 @@ export class Edible{
         this.element.textContent = this.edible.edible + ` (${this.edible.processes[0].preparation})`;
 
         for(let ingredientData of this.edible.ingredients){
-            const ingredient = new Ingredient({"data": ingredientData, "parent": this.element, "time": this.edible.processes[0].time});
+            const ingredient = new Ingredient({
+                "data": ingredientData, 
+                "parent": this.element, 
+                "time": this.edible.processes[0].time
+            });
             ingredient.render();
+
+        }
+
+        if(this.beingProcessed || this.beingTransformed){
+            const progressBar = document.createElement("div");
+            const progression = document.createElement("div");
+            progressBar.className = "progressBar";
+            progression.className = "progress";
+            this.element.appendChild(progressBar);
+            progressBar.appendChild(progression);
         }
     }
 
     process(counter){
-        for(let ingredientData of this.edible.ingredients){
+        this.render();
+        const progression = this.element.querySelector(".progress");
+
+        if(progression){
+            const time = this.edible.processes[0].time;
+            progression.style.width = (counter / time) * 100 + "%";
+        }
+
+
+      /*for(let ingredientData of this.edible.ingredients){
             const ingredient = new Ingredient({"data": ingredientData, "parent": this.element, "time": this.edible.processes[0].time});
             ingredient.process(counter);
+            ingredient.originalAmount = ingredientData.amount; 
             this.render();
-        } 
-        //change ingredients
+        }*/  
+    }
+
+    //hey hey woawh Im finished prepStation//
+
+    finishProcessing(){
+        this.beingProcessed = false;
+        this.processed = true;
     }
 
     onDragStart(event){

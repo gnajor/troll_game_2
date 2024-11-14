@@ -1,12 +1,10 @@
 export class Ingredient{
-    //static preferedAmount = amount
 
     constructor(details){
         const {parent, data, time} = details;
         this.parent = parent;
         this.ingredient = data;
         this.element = this.create();
-        this.increaseAmount = 10/time;
     }
 
     create(){
@@ -15,9 +13,9 @@ export class Ingredient{
         return ingredientElement;
     }
 
-    process(counter){
+/*     process(counter){
         this.ingredient.amount = this.increaseAmount * counter;
-    }
+    } */
 
     render(){
         this.element.textContent = `${this.ingredient.name}: ${this.ingredient.amount}`;
