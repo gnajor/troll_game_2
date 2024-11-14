@@ -13,6 +13,8 @@ export class Edible{
         this.beingProcessed = false;
         this.beingTransformed = false;
         this.processed = false;
+        this.transformed = false;
+        this.currentStation = null;
         Edible.edibleInstances.push(this);
     }
 
@@ -37,7 +39,6 @@ export class Edible{
                 "time": this.edible.processes[0].time
             });
             ingredient.render();
-
         }
 
         if(this.beingProcessed || this.beingTransformed){
@@ -51,6 +52,7 @@ export class Edible{
     }
 
     process(counter){
+        if(!this.beingProcessed){return;}
         this.render();
         const progression = this.element.querySelector(".progress");
 
@@ -68,11 +70,21 @@ export class Edible{
         }*/  
     }
 
-    //hey hey woawh Im finished prepStation//
+    transform(counter){
+        if(!this.beingTransformed){return;}
+        this.render();
+        const progression = this.element.querySelector(".progress");
+
+        if(progression){
+            const time = this.edible.processes[1].time;
+            progression.style.width = (counter / time) * 100 + "%";
+        }
+    }
 
     finishProcessing(){
         this.beingProcessed = false;
-        this.processed = true;
+        this.processed = true
+
     }
 
     onDragStart(event){

@@ -21,6 +21,13 @@ body:has(#render_button){
  
 } */
 
+#timer{
+    font-size: 2rem;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding:1rem 0;
+}
+
 #wrapper{
     display: flex;
     flex-direction: column;

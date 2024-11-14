@@ -6,6 +6,7 @@ class BarStation{
         this.parent = document.querySelector(details.parentId);
         this.elapsedTime = 0;
         this.beingUsed = false;
+        this.elapsedTime = 0;
         this.id = details.id;
         this.renderBar();
     }
@@ -29,26 +30,46 @@ class BarStation{
     onDropCheckAndStartTrans(event){
         const id = Number(event.dataTransfer.getData("text/plain")); 
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
-        const transform = edibleInstance.edible.processes[0].transform;
 
-        edibleInstance.parent = event.target;
-        this.startTransformation(edibleInstance);
+        if(!this.beingUsed && !edibleInstance.transformed){
+            edibleInstance.parent = event.target;
+            edibleInstance.currentStation.completePreparation(edibleInstance);
+            edibleInstance.currentStation.beingUsed = false;
+            this.startTransformation(edibleInstance);
+        }
     }
 
-    startTransformation(edibleInstance){
+/*     startTransformation(edibleInstance){
+        this.beingUsed = true;
+        const transformTime = edibleInstance.edible.processes[1].time;
         edibleInstance.render();
         edibleInstance.beingTransformed = true;
+        edibleInstance.currentStation = this;
+        edibleInstance.transform(this.elapsedTime);
 
-        this.intervalId = setInterval(() => {
+        PubSub.subscribe({
+            event: "timeTicking",
+            listener: this.timeHandler
+        });
+
+        this.timeHandler = function (){
             this.elapsedTime += 1;
-            //edibleInstance.process(this.elapsedTime);
-
-            if(this.elapsedTime >= processTime){
-                this.completePreperation(edibleInstance);
+            edibleInstance.transform(this.elapsedTime);
+    
+            if(this.elapsedTime >= transformTime){
+                this.completeTransformation(edibleInstance);
             }
-
-        }, 1000);
+        }
     }
+
+    completeTransformation(edibleInstance){
+        
+
+        PubSub.unsubscribe({
+            event: "timeTicking",
+            listener: this.timeHandler
+        });
+    } */
 }
 
 PubSub.subscribe({

@@ -39,26 +39,37 @@ class PrepStation{
     }
 
     startPreperation(edibleInstance){
+        this.beingUsed = true;
         const processTime = edibleInstance.edible.processes[0].time;
         edibleInstance.render();
         edibleInstance.beingProcessed = true;
-        this.beingUsed = true;
+        edibleInstance.currentStation = this;
         edibleInstance.process(this.elapsedTime);
-        
-        this.intervalId = setInterval(() => {
+
+        this.timeHandler = function (){
             this.elapsedTime += 1;
             edibleInstance.process(this.elapsedTime);
-
-            if(this.elapsedTime >= processTime){
-                this.completePreperation(edibleInstance);
+            console.log("cum")
+            
+            if (this.elapsedTime >= processTime) {
+                this.completePreparation(edibleInstance);
             }
+        }
 
-        }, 1000);
+
+        PubSub.subscribe({
+            event: "timeTicking",
+            listener: this.timeHandler.bind(this), //can't use bind as it creates a referense or something
+        });
     }
 
-    completePreperation(edibleInstance){
-        clearInterval(this.intervalId);
-        this.beingUsed = false;
+    completePreparation(edibleInstance){
+/*         PubSub.unsubscribe({
+            event: "timeTicking",
+            listener: this.timeHandler
+        }); */
+
+        this.cum = false;
         this.elapsedTime = 0;
         edibleInstance.beingProcessed = false;
         edibleInstance.finishProcessing();
