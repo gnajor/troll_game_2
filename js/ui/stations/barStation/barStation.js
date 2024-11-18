@@ -39,18 +39,13 @@ class BarStation{
         }
     }
 
-/*     startTransformation(edibleInstance){
+    startTransformation(edibleInstance){
         this.beingUsed = true;
         const transformTime = edibleInstance.edible.processes[1].time;
         edibleInstance.render();
         edibleInstance.beingTransformed = true;
         edibleInstance.currentStation = this;
         edibleInstance.transform(this.elapsedTime);
-
-        PubSub.subscribe({
-            event: "timeTicking",
-            listener: this.timeHandler
-        });
 
         this.timeHandler = function (){
             this.elapsedTime += 1;
@@ -60,16 +55,23 @@ class BarStation{
                 this.completeTransformation(edibleInstance);
             }
         }
+
+        PubSub.subscribe({
+            event: "timeTicking",
+            listener: this.timeHandler.bind(this)
+        });
     }
 
     completeTransformation(edibleInstance){
-        
+        this.elapsedTime = 0;
+        edibleInstance.beingTransformed = false;
+        edibleInstance.finishTransforming();
 
-        PubSub.unsubscribe({
+/*         PubSub.unsubscribe({
             event: "timeTicking",
             listener: this.timeHandler
-        });
-    } */
+        }); */
+    }
 }
 
 PubSub.subscribe({

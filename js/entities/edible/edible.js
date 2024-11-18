@@ -84,7 +84,11 @@ export class Edible{
     finishProcessing(){
         this.beingProcessed = false;
         this.processed = true
+    }
 
+    finishTransforming(){
+        this.beingTransformed = false;
+        this.transformed = true;
     }
 
     onDragStart(event){
@@ -99,6 +103,75 @@ PubSub.subscribe({
         edible.render();
     }
 });
+
+//Part 3???
+/* 
+    freezable borde finnas i edible || vilket du har :) 
+    this.action = this.edible.process[0].action
+    preperation borde probably heta station i gameLogic
+
+    if(food.station === this.station) || Din => process === this.prepMethod
+
+    You don't need to use edible.render when you want the station to render 
+    so you want a render and a create in prepStation
+
+    använd metoder för att ändra this i edible ändra INTE instansens värde hos PrepStation
+    ha en metod för startCooking or whatever istället för att ha edibleInstance.beingProcessed = true;¨
+
+    ha allting i state.js eller allting i entities state
+    
+    ha en timer för hela spelet PubSub.js
+    
+    Kan ha en class Timer som har Timer.start(tid, vad som ska hända varenda gång den tickar, this.timOut) när man droppar den; 
+
+    
+    Stationer fungerar på samma sätt:
+        Preparation
+            vissa drar ned, vissa drar upp
+            tills tiden är klar || man kan inte ta ut den mid
+            ruttnar så fort dom är tillagade
+
+            Även här kan de inte röras om de har ruttnat
+
+        Baren
+            Börjar ruttna efter tid (bara ruttna)
+            om den har "bli kvar"
+            börjar ruttna
+
+            ges bort (någon kommer att ta bort den, måste vänta till någon kommer)
+            bär ut (slänger trollen )
+
+            //om maten blir kvar då händer kassering
+
+        Troll
+            Maten försvinner
+            Trollet tar så mycket den kan ta
+
+        Trashas
+            Mat kan trashas
+
+
+
+        Pantry
+
+        Station
+            - prep
+            - när den är klar ruttnar den
+                - tiden får man från Transformation
+
+        Bar
+         - börjar ruttna
+         - När den har ruttnat (kassering)
+         - 
+
+*/
+
+
+
+
+
+
+
 
 
 //ingredients should have it own class

@@ -26,12 +26,11 @@ export const PubSub = {
     },
 
     unsubscribe: function(data) {
-        const { event, listener } = data;
-
-        /* listeners[event].splice(0,1) */
+        const {event, listener} = data;
+        console.log(listeners[event]);
     
         if (listeners[event]) {
-            listeners[event] = listeners[event].filter((registeredListener) => registeredListener !== "bound ");
+            listeners[event] = listeners[event].filter((registeredListener) => registeredListener !== listener);
         }
     }
 }

@@ -49,7 +49,7 @@ class PrepStation{
         this.timeHandler = function (){
             this.elapsedTime += 1;
             edibleInstance.process(this.elapsedTime);
-            console.log("cum")
+            console.log("ticking")
             
             if (this.elapsedTime >= processTime) {
                 this.completePreparation(edibleInstance);
@@ -64,14 +64,12 @@ class PrepStation{
     }
 
     completePreparation(edibleInstance){
-/*         PubSub.unsubscribe({
+        PubSub.unsubscribe({
             event: "timeTicking",
             listener: this.timeHandler
-        }); */
+        });
 
-        this.cum = false;
         this.elapsedTime = 0;
-        edibleInstance.beingProcessed = false;
         edibleInstance.finishProcessing();
     }
 }
