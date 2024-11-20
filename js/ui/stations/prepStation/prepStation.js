@@ -1,5 +1,6 @@
 import { PubSub } from "../../../utils/pubsub.js";
 import { Edible } from "../../../entities/edible/edible.js";
+import { Timer } from "../../timer/timer.js";
 
 class PrepStation{
     constructor(details){
@@ -7,24 +8,18 @@ class PrepStation{
         this.parent = document.querySelector(parentId);
         this.prepMethod = data;
         this.beingUsed = false;
-        this.elapsedTime = 0;
-        this.renderPrepStation();
+        this.render();
     }
 
-    renderPrepStation(){
-        if(this.parent){
-            const station = document.createElement("div");
-            station.id = "station_" + this.prepMethod;
-            station.className = "station";
-            station.textContent = this.prepMethod;
-            this.parent.appendChild(station);
+    render(){
+        const station = document.createElement("div");
+        station.id = "station_" + this.prepMethod;
+        station.className = "station";
+        station.textContent = this.prepMethod;
+        this.parent.appendChild(station);
 
-            station.addEventListener("dragover", (event) => event.preventDefault());
-            station.addEventListener("drop", this.onDropCheckAndStartPrep.bind(this));   
-        }
-        else{
-            console.error("Parent Element error");
-        }
+        station.addEventListener("dragover", (event) => event.preventDefault());
+        station.addEventListener("drop", this.onDropCheckAndStartPrep.bind(this));  
     }
 
     onDropCheckAndStartPrep(event){
@@ -32,45 +27,26 @@ class PrepStation{
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
         const process = edibleInstance.edible.processes[0].preparation;
         
-        if(process === this.prepMethod && !this.beingUsed && !edibleInstance.processed){
-            edibleInstance.parent = event.target;
+        if(process === this.prepMethod && !this.beingUsed && !edibleInstance.prepared){
             this.startPreperation(edibleInstance);
+            edibleInstance.startPreperation(event.target, this);
         }
     }
 
     startPreperation(edibleInstance){
         this.beingUsed = true;
-        const processTime = edibleInstance.edible.processes[0].time;
-        edibleInstance.render();
-        edibleInstance.beingProcessed = true;
-        edibleInstance.currentStation = this;
-        edibleInstance.process(this.elapsedTime);
+        const duration = edibleInstance.edible.processes[0].time;
 
-        this.timeHandler = function (){
-            this.elapsedTime += 1;
-            edibleInstance.process(this.elapsedTime);
-            console.log("ticking")
-            
-            if (this.elapsedTime >= processTime) {
-                this.completePreparation(edibleInstance);
-            }
-        }
-
-
-        PubSub.subscribe({
-            event: "timeTicking",
-            listener: this.timeHandler.bind(this), //can't use bind as it creates a referense or something
-        });
-    }
-
-    completePreparation(edibleInstance){
-        PubSub.unsubscribe({
-            event: "timeTicking",
-            listener: this.timeHandler
-        });
-
-        this.elapsedTime = 0;
-        edibleInstance.finishProcessing();
+        const timer = new Timer();
+        timer.startTimer(
+            duration, 
+            function preperate(time){
+                edibleInstance.processPreparation(time, duration);    
+            }.bind(this), 
+            function finishPreparation(){
+                edibleInstance.finishPreperation("preparation"); 
+            }.bind(this)
+        );
     }
 }
 
@@ -78,5 +54,6 @@ PubSub.subscribe({
     event: "renderPrepStations",
     listener: (details) => {
         const prepStation = new PrepStation(details);
+
     }
 });

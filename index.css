@@ -108,7 +108,7 @@ body:has(#render_button){
     height: 100%;
     width: 0;
     background-color: #00c281;
-    transition: all 1s ease;
+    /* transition: all 1s linear; */
     border-radius: 3px;
 }
 

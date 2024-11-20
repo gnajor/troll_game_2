@@ -6,15 +6,14 @@ export class Edible{
 
     constructor(details){
         const {data, parentId, id} = details;
-        this.parent = document.querySelector(parentId);
         this.edible = data;
         this.id = id;
-        this.element = this.create();
         this.beingProcessed = false;
-        this.beingTransformed = false;
-        this.processed = false;
-        this.transformed = false;
+        this.prepared = false;
+        this.transfromed = false;
         this.currentStation = null;
+        this.parent = document.querySelector(parentId);
+        this.element = this.create();
         Edible.edibleInstances.push(this);
     }
 
@@ -23,72 +22,123 @@ export class Edible{
         edibleElement.id = "edible_" + this.id;
         edibleElement.setAttribute("draggable", true);
         edibleElement.addEventListener("dragstart", this.onDragStart.bind(this));
+
+        const textContainer = document.createElement("div");
+        textContainer.className = "text_container";
+        edibleElement.appendChild(textContainer);
+
+        const ingredientContainer = document.createElement("div");
+        ingredientContainer.id = "ingredient_container";
+        edibleElement.appendChild(ingredientContainer);
+
+        for(let ingredientData of this.edible.ingredients){
+            const ingredient = new Ingredient({
+                "data": ingredientData, 
+                "parent": ingredientContainer, 
+                "id": this.id
+            });
+            ingredient.render();
+            ingredient.storeStartAmount();
+        }
         
         return edibleElement;
     }
 
     render(){
-        this.element.innerHTML = "";
         this.parent.appendChild(this.element);
-        this.element.textContent = this.edible.edible + ` (${this.edible.processes[0].preparation})`;
 
-        for(let ingredientData of this.edible.ingredients){
-            const ingredient = new Ingredient({
-                "data": ingredientData, 
-                "parent": this.element, 
-                "time": this.edible.processes[0].time
-            });
-            ingredient.render();
-        }
+        const textContainer = this.element.querySelector(".text_container");
+        textContainer.textContent = this.edible.edible + ` (${this.edible.processes[0].preparation})`;
 
-        if(this.beingProcessed || this.beingTransformed){
-            const progressBar = document.createElement("div");
-            const progression = document.createElement("div");
-            progressBar.className = "progressBar";
-            progression.className = "progress";
-            this.element.appendChild(progressBar);
-            progressBar.appendChild(progression);
-        }
-    }
+        const ingredientInstances = Ingredient.ingredientInstances.filter((ingredient) => ingredient.id === this.id);
+        for(let ingredientInstance of ingredientInstances){
+            ingredientInstance.render(); 
+        }  
 
-    process(counter){
-        if(!this.beingProcessed){return;}
-        this.render();
-        const progression = this.element.querySelector(".progress");
+        if(this.beingProcessed){
+            const progressBar = this.element.querySelector(".progressBar")
 
-        if(progression){
-            const time = this.edible.processes[0].time;
-            progression.style.width = (counter / time) * 100 + "%";
-        }
-
-
-      /*for(let ingredientData of this.edible.ingredients){
-            const ingredient = new Ingredient({"data": ingredientData, "parent": this.element, "time": this.edible.processes[0].time});
-            ingredient.process(counter);
-            ingredient.originalAmount = ingredientData.amount; 
-            this.render();
-        }*/  
-    }
-
-    transform(counter){
-        if(!this.beingTransformed){return;}
-        this.render();
-        const progression = this.element.querySelector(".progress");
-
-        if(progression){
-            const time = this.edible.processes[1].time;
-            progression.style.width = (counter / time) * 100 + "%";
+            if(!progressBar){
+                const progressBar = document.createElement("div");
+                const progression = document.createElement("div");
+                progressBar.className = "progressBar";
+                progression.className = "progress";
+                this.element.appendChild(progressBar);
+                progressBar.appendChild(progression);
+            }
+            else{
+                progressBar.innerHTML = "";
+                const progression = document.createElement("div");
+                progression.className = "progress";
+                progressBar.appendChild(progression);
+            }
         }
     }
 
-    finishProcessing(){
-        this.beingProcessed = false;
-        this.processed = true
+    startPreperation(newParent, currentStation){
+        this._startCommon(newParent, currentStation);
+        this.element.removeAttribute("draggable");
     }
 
-    finishTransforming(){
-        this.beingTransformed = false;
+    startTransformation(newParent, currentStation){
+        this._startCommon(newParent, currentStation);
+    }
+
+    processPreparation(counter, duration){
+        this._processCommon(counter, duration, "prep");
+    }
+
+    processTransformation(counter, duration){
+        this._processCommon(counter, duration, "trans");
+    }
+
+    finishPreperation(){
+        this.prepared = true;
+        this._finishCommon();
+    }
+
+    finishTransformation(){
         this.transformed = true;
+        this._finishCommon();
+    }
+
+    _startCommon(newParent, currentStation){
+        if(this.currentStation){
+            this.currentStation.beingUsed = false;
+        }
+        this.currentStation = currentStation;
+        this.beingProcessed = true;
+        this.parent = newParent;
+        this.render();
+    }
+
+    _processCommon(counter, duration, method){
+        const progression = this.element.querySelector(".progress");
+        const ingredientInstances = Ingredient.ingredientInstances.filter((ingredient) => ingredient.id === this.id);
+
+        for(let ingredientInstance of ingredientInstances){ 
+            if(method === "prep"){
+                ingredientInstance.process(counter, duration);
+            }
+            else if(method === "trans"){
+                ingredientInstance.rot(counter, duration);
+            }
+
+            ingredientInstance.render(); 
+        }
+
+        if(method === "trans"){
+            progression.style.color = "red";
+        }
+
+        if(progression){
+            progression.style.width = (counter / duration) * 100 + "%";
+        }
+    }
+
+    _finishCommon(){
+        this.beingProcessed = false;
+        this.element.setAttribute("draggable", true);
     }
 
     onDragStart(event){
@@ -116,7 +166,7 @@ PubSub.subscribe({
     so you want a render and a create in prepStation
 
     använd metoder för att ändra this i edible ändra INTE instansens värde hos PrepStation
-    ha en metod för startCooking or whatever istället för att ha edibleInstance.beingProcessed = true;¨
+    ha en metod för startCooking or whatever istället för att ha edibleInstance.beingProcessed = true;
 
     ha allting i state.js eller allting i entities state
     

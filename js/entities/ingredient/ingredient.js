@@ -1,10 +1,17 @@
+import { globals } from "../../utils/globals.js";
+
 export class Ingredient{
 
+    static ingredientInstances = [];
+
     constructor(details){
-        const {parent, data, time} = details;
+        const {parent, data, id} = details;
         this.parent = parent;
         this.ingredient = data;
+        this.startAmount = 0;
+        this.id = id;
         this.element = this.create();
+        Ingredient.ingredientInstances.push(this);
     }
 
     create(){
@@ -12,13 +19,22 @@ export class Ingredient{
         ingredientElement.className = "ingredient";
         return ingredientElement;
     }
-
-/*     process(counter){
-        this.ingredient.amount = this.increaseAmount * counter;
-    } */
-
+    
     render(){
         this.element.textContent = `${this.ingredient.name}: ${this.ingredient.amount}`;
         this.parent.appendChild(this.element);
+    }
+
+    storeStartAmount(){ 
+        this.startAmount = this.ingredient.amount;
+    }
+
+    rot(counter, duration){
+        this.ingredient.amount = Number((this.startAmount - (counter * (this.startAmount / duration))).toFixed(2));
+    }
+
+    process(counter, duration){
+        
+        this.ingredient.amount = Number((0 + (counter * (this.startAmount / duration))).toFixed(2));
     }
 }

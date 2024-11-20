@@ -16,6 +16,6 @@ export const globals = {
     },
 
     generateRandomDouble(min, max){
-        return (Math.random() * (max - min) + min).toFixed(2);
+        return (Math.random() * (max - min) + min).toFixed(1);
     }
 }

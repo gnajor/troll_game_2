@@ -1,17 +1,16 @@
 import { PubSub } from "../../../utils/pubsub.js";
 import { Edible } from "../../../entities/edible/edible.js";
+import { Timer } from "../../timer/timer.js";
 
 class BarStation{
     constructor(details){
         this.parent = document.querySelector(details.parentId);
-        this.elapsedTime = 0;
         this.beingUsed = false;
-        this.elapsedTime = 0;
         this.id = details.id;
-        this.renderBar();
+        this.render();
     }
 
-    renderBar(){
+    render(){
         if(this.parent){
             const barStation = document.createElement("div");
             this.parent.appendChild(barStation);
@@ -31,46 +30,26 @@ class BarStation{
         const id = Number(event.dataTransfer.getData("text/plain")); 
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
 
-        if(!this.beingUsed && !edibleInstance.transformed){
-            edibleInstance.parent = event.target;
-            edibleInstance.currentStation.completePreparation(edibleInstance);
-            edibleInstance.currentStation.beingUsed = false;
+        if(!this.beingUsed && !edibleInstance.transformed && edibleInstance.prepared){
             this.startTransformation(edibleInstance);
+            edibleInstance.startTransformation(event.target, this);
         }
     }
 
     startTransformation(edibleInstance){
         this.beingUsed = true;
-        const transformTime = edibleInstance.edible.processes[1].time;
-        edibleInstance.render();
-        edibleInstance.beingTransformed = true;
-        edibleInstance.currentStation = this;
-        edibleInstance.transform(this.elapsedTime);
+        const duration = edibleInstance.edible.processes[1].time;
 
-        this.timeHandler = function (){
-            this.elapsedTime += 1;
-            edibleInstance.transform(this.elapsedTime);
-    
-            if(this.elapsedTime >= transformTime){
-                this.completeTransformation(edibleInstance);
-            }
-        }
-
-        PubSub.subscribe({
-            event: "timeTicking",
-            listener: this.timeHandler.bind(this)
-        });
-    }
-
-    completeTransformation(edibleInstance){
-        this.elapsedTime = 0;
-        edibleInstance.beingTransformed = false;
-        edibleInstance.finishTransforming();
-
-/*         PubSub.unsubscribe({
-            event: "timeTicking",
-            listener: this.timeHandler
-        }); */
+        const timer = new Timer();
+        timer.startTimer(
+            duration,
+            function transform(time){
+                edibleInstance.processTransformation(time, duration);
+            }.bind(this),
+            function finishTransformation(){
+                edibleInstance.finishTransformation("transformation");
+            }.bind(this)
+        );
     }
 }
 
