@@ -2,16 +2,19 @@ import { globals } from "../../utils/globals.js";
 
 export class Ingredient{
 
-    static ingredientInstances = [];
+    static ingredientInstances = {
+        edible: [],
+        troll: []
+    };
 
     constructor(details){
-        const {parent, data, id} = details;
+        const {parent, data, id, type} = details;
         this.parent = parent;
         this.ingredient = data;
         this.startAmount = 0;
         this.id = id;
         this.element = this.create();
-        Ingredient.ingredientInstances.push(this);
+        Ingredient.ingredientInstances[type].push(this);
     }
 
     create(){
@@ -23,6 +26,9 @@ export class Ingredient{
     render(){
         this.element.textContent = `${this.ingredient.name}: ${this.ingredient.amount}`;
         this.parent.appendChild(this.element);
+        if(this.type === "troll"){
+            console.log("cum")
+        }
     }
 
     storeStartAmount(){ 

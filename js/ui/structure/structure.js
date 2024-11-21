@@ -14,6 +14,7 @@ function renderStructure(parentSelector){
     parent.innerHTML = 
     `<div id="wrapper">
         <div id="timer"></div>
+        <div id="bin"></div>
         <div id="dining_room"></div>
         <div id="bar"></div>
         <div id="kitchen"></div>
@@ -23,6 +24,11 @@ function renderStructure(parentSelector){
     PubSub.publish({
         event: "renderTimer",
         details: "#timer"
+    });
+
+    PubSub.publish({
+        event: "renderBin",
+        details: "#bin"
     });
 
     PubSub.publish({

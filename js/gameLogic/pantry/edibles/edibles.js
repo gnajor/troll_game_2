@@ -20,7 +20,7 @@ export class Alubi extends EdibleBlueprint {
                 { preparation: 'Microwaved', time: 30 },
                 { transformation: 'Fermented', time: 20 },
                 { disposal: 'Given away', time: 0 }
-            ]
+            ],
         };
         super(details);
     }
@@ -80,7 +80,7 @@ export class Grusil extends EdibleBlueprint {
     static {
         EdibleBlueprint.registerEdible(Grusil);
     }
-
+//72195
     constructor() {
         const details = {
             ingredients: [

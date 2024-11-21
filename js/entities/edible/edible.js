@@ -35,6 +35,7 @@ export class Edible{
             const ingredient = new Ingredient({
                 "data": ingredientData, 
                 "parent": ingredientContainer, 
+                "type": "edible",
                 "id": this.id
             });
             ingredient.render();
@@ -50,7 +51,7 @@ export class Edible{
         const textContainer = this.element.querySelector(".text_container");
         textContainer.textContent = this.edible.edible + ` (${this.edible.processes[0].preparation})`;
 
-        const ingredientInstances = Ingredient.ingredientInstances.filter((ingredient) => ingredient.id === this.id);
+        const ingredientInstances = Ingredient.ingredientInstances.edible.filter((ingredient) => ingredient.id === this.id);
         for(let ingredientInstance of ingredientInstances){
             ingredientInstance.render(); 
         }  
@@ -73,6 +74,11 @@ export class Edible{
                 progressBar.appendChild(progression);
             }
         }
+    }
+
+    destroy(){
+        this.currentStation.beingUsed = false;
+        this.element.remove();
     }
 
     startPreperation(newParent, currentStation){
@@ -100,12 +106,18 @@ export class Edible{
     finishTransformation(){
         this.transformed = true;
         this._finishCommon();
+
+
+
+/*         this.parent.style.backgroundColor = "red"
+        this.parent.textContent = "X"; */
     }
 
     _startCommon(newParent, currentStation){
         if(this.currentStation){
             this.currentStation.beingUsed = false;
         }
+
         this.currentStation = currentStation;
         this.beingProcessed = true;
         this.parent = newParent;
@@ -114,7 +126,7 @@ export class Edible{
 
     _processCommon(counter, duration, method){
         const progression = this.element.querySelector(".progress");
-        const ingredientInstances = Ingredient.ingredientInstances.filter((ingredient) => ingredient.id === this.id);
+        const ingredientInstances = Ingredient.ingredientInstances.edible.filter((ingredient) => ingredient.id === this.id);
 
         for(let ingredientInstance of ingredientInstances){ 
             if(method === "prep"){
@@ -123,12 +135,11 @@ export class Edible{
             else if(method === "trans"){
                 ingredientInstance.rot(counter, duration);
             }
-
             ingredientInstance.render(); 
         }
 
         if(method === "trans"){
-            progression.style.color = "red";
+            progression.style.backgroundColor = "red";
         }
 
         if(progression){

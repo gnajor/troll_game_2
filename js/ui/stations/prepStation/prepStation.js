@@ -44,9 +44,11 @@ class PrepStation{
                 edibleInstance.processPreparation(time, duration);    
             }.bind(this), 
             function finishPreparation(){
-                edibleInstance.finishPreperation("preparation"); 
+                edibleInstance.finishPreperation("preparation");
             }.bind(this)
         );
+
+        /* timer.stopTimer(timerId) */
     }
 }
 

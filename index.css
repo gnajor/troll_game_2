@@ -8,6 +8,7 @@ html{
 
 body{
     margin:0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body:has(#render_button){
@@ -24,8 +25,14 @@ body:has(#render_button){
 #timer{
     font-size: 2rem;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
     padding:1rem 0;
+}
+
+#bin #bin_container{
+    padding:1.5rem 0;
+    text-align: center;
+    border:2px solid black;
+    font-size: 1.5rem;
 }
 
 #wrapper{
@@ -63,6 +70,10 @@ body:has(#render_button){
     text-align: center;
     border:2px solid black;
     height: fit-content;
+}
+
+#bar #bar_stations_container .destroyed{
+    background-color: red;
 }
 
 #kitchen #prep_stations_container{

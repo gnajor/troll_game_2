@@ -44,8 +44,6 @@ export class Timer{
     startTimer(duration, onTick, onTimeOut){
         let elapsedTime = 0;
 
-        //something weird with the timer undefined at the start
-
         PubSub.subscribe({
             event: "timeTicking",
             listener: function forEachTimeTick(){
@@ -60,8 +58,7 @@ export class Timer{
                     });  
                 }
             }
-        })
-
+        });
     }
 
     makeIntoMinutes(time){
