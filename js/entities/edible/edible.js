@@ -10,7 +10,7 @@ export class Edible{
         this.id = id;
         this.beingProcessed = false;
         this.prepared = false;
-        this.transfromed = false;
+        this.transformed = false;
         this.currentStation = null;
         this.parent = document.querySelector(parentId);
         this.element = this.create();
@@ -90,6 +90,10 @@ export class Edible{
         this._startCommon(newParent, currentStation);
     }
 
+    startDisposal(){
+        this.element.removeAttribute("draggable");
+    }
+
     processPreparation(counter, duration){
         this._processCommon(counter, duration, "prep");
     }
@@ -98,19 +102,22 @@ export class Edible{
         this._processCommon(counter, duration, "trans");
     }
 
+    processDisposing(counter, duration){
+        this._processCommon(counter, duration, "dispose");
+    }
+
     finishPreperation(){
         this.prepared = true;
         this._finishCommon();
     }
 
+    finishDisposing(){
+        this.destroy();
+    }
+
     finishTransformation(){
         this.transformed = true;
         this._finishCommon();
-
-
-
-/*         this.parent.style.backgroundColor = "red"
-        this.parent.textContent = "X"; */
     }
 
     _startCommon(newParent, currentStation){
@@ -135,11 +142,18 @@ export class Edible{
             else if(method === "trans"){
                 ingredientInstance.rot(counter, duration);
             }
+            else if(method === "dispose"){
+                ingredientInstance.process(0, duration)
+            }
             ingredientInstance.render(); 
         }
 
         if(method === "trans"){
             progression.style.backgroundColor = "red";
+        }
+
+        else if(method === "dispose"){
+            progression.style.backgroundColor = "black";
         }
 
         if(progression){

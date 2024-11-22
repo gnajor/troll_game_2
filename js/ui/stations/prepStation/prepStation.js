@@ -37,8 +37,7 @@ class PrepStation{
         this.beingUsed = true;
         const duration = edibleInstance.edible.processes[0].time;
 
-        const timer = new Timer();
-        timer.startTimer(
+        Timer.startTimer(
             duration, 
             function preperate(time){
                 edibleInstance.processPreparation(time, duration);    
@@ -48,7 +47,12 @@ class PrepStation{
             }.bind(this)
         );
 
-        /* timer.stopTimer(timerId) */
+/*         setTimeout(() => {
+            const timer2 = new Timer();
+
+            timer2.stopTimer(timerId);
+            console.log("Timer stopped early!");
+        }, 5000); */
     }
 }
 

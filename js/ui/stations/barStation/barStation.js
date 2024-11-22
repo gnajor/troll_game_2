@@ -9,6 +9,7 @@ class BarStation{
         this.id = details.id;
         this.stationElement = this.create(); 
         this.destroyed = false;
+        this.timerId = null;
     }
 
     create(){
@@ -47,8 +48,7 @@ class BarStation{
         this.beingUsed = true;
         const duration = edibleInstance.edible.processes[1].time;
 
-        const timer = new Timer();
-        timer.startTimer(
+        this.timerId = Timer.startTimer(
             duration,
             function transform(time){
                 edibleInstance.processTransformation(time, duration);
@@ -66,15 +66,15 @@ class BarStation{
 
 
         if(method === "Taken out"){
-            const timer = new Timer();
+            edibleInstance.startDisposal();
 
-            timer.startTimer(
+            Timer.startTimer(
                 duration,
-                function transform(time){
-                    edibleInstance.processTransformation(time, duration);
+                function dispose(time){
+                    edibleInstance.processDisposing(time, duration);
                 }.bind(this),
-                function finishTransformation(){
-                    edibleInstance.finishTransformation("transformation");
+                function finishDisposing(){
+                    edibleInstance.finishDisposing();
                 }.bind(this)
             );
         }

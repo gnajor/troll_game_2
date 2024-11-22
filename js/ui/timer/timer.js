@@ -1,6 +1,9 @@
 import { PubSub } from "../../utils/pubsub.js";
 
 export class Timer{
+
+    static timers = {}
+
     constructor(){
         this.gameDuration = 180;
         this.timerCounter = 0;
@@ -41,24 +44,38 @@ export class Timer{
         }, 1000);
     }
 
-    startTimer(duration, onTick, onTimeOut){
+    static startTimer(duration, onTick, onTimeOut) {
+        const timerId = Symbol("TimerID"); 
         let elapsedTime = 0;
+
+        const listener = () => {
+            elapsedTime++;
+            onTick(elapsedTime);
+
+            if (elapsedTime >= duration) {
+                Timer.stopTimer(timerId); 
+                onTimeOut();
+            }
+        };
 
         PubSub.subscribe({
             event: "timeTicking",
-            listener: function forEachTimeTick(){
-                elapsedTime += 1;
-                onTick(elapsedTime);
-                
-                if(elapsedTime >= duration){
-                    onTimeOut(); 
-                    PubSub.unsubscribe({
-                        event: "timeTicking",
-                        listener: forEachTimeTick
-                    });  
-                }
-            }
+            listener: listener
         });
+
+        Timer.timers[timerId] = { listener };
+        return timerId; 
+    }
+
+    static stopTimer(timerId) {
+        const timer = Timer.timers[timerId];
+        if (timer) {
+            PubSub.unsubscribe({
+                event: "timeTicking",
+                listener: timer.listener
+            }); 
+            delete Timer.timers[timerId]; 
+        }
     }
 
     makeIntoMinutes(time){
@@ -81,39 +98,3 @@ PubSub.subscribe({
         globalTimer.render(parentId);
     }
 });
-
-
-/* 
-function renderTimer(parentId){
-    const parent = document.querySelector(parentId);
-    const gameDuration = 180;
-    let timerCounter = 0;
-    let gameTimer = 0;
-
-    if(!parent){
-        console.error("Parent Element Error");
-        return;
-    }
-
-    const timerElement = document.createElement("div");
-    timerElement.id = "timerContainer";
-    timerElement.textContent = makeIntoMinutes(gameDuration);
-    parent.appendChild(timerElement);
-
-    const intervalId = setInterval(() => {
-        timerCounter++;
-        gameTimer = gameDuration - timerCounter;
-        timerElement.textContent = makeIntoMinutes(gameTimer);
-
-        PubSub.publish({
-            event: "timeTicking",
-            details: null
-        });
-
-        if(timerCounter === gameDuration){
-            clearInterval(intervalId);
-        }
-
-    }, 1000);
-}
-*/
