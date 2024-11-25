@@ -179,6 +179,17 @@ PubSub.subscribe({
     }
 });
 
+
+//part 4
+
+/* 
+    
+
+
+*/
+
+
+
 //Part 3???
 /* 
     freezable borde finnas i edible || vilket du har :) 

@@ -46,13 +46,6 @@ class PrepStation{
                 edibleInstance.finishPreperation("preparation");
             }.bind(this)
         );
-
-/*         setTimeout(() => {
-            const timer2 = new Timer();
-
-            timer2.stopTimer(timerId);
-            console.log("Timer stopped early!");
-        }, 5000); */
     }
 }
 

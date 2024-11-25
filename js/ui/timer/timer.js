@@ -4,6 +4,40 @@ export class Timer{
 
     static timers = {}
 
+    static startTimer(duration, onTick, onTimeOut) {
+        const timerId = Symbol("TimerID"); 
+        let elapsedTime = 0;
+
+        const listener = () => {
+            elapsedTime++;
+            onTick(elapsedTime);
+
+            if (elapsedTime >= duration) {
+                Timer.stopTimer(timerId); 
+                onTimeOut();
+            }
+        };
+
+        PubSub.subscribe({
+            event: "timeTicking",
+            listener: listener
+        });
+
+        Timer.timers[timerId] = { listener };
+        return timerId; 
+    }
+
+    static stopTimer(timerId) {
+        const timer = Timer.timers[timerId];
+        if (timer) {
+            PubSub.unsubscribe({
+                event: "timeTicking",
+                listener: timer.listener
+            }); 
+            delete Timer.timers[timerId]; 
+        }
+    }
+
     constructor(){
         this.gameDuration = 180;
         this.timerCounter = 0;
@@ -44,40 +78,6 @@ export class Timer{
         }, 1000);
     }
 
-    static startTimer(duration, onTick, onTimeOut) {
-        const timerId = Symbol("TimerID"); 
-        let elapsedTime = 0;
-
-        const listener = () => {
-            elapsedTime++;
-            onTick(elapsedTime);
-
-            if (elapsedTime >= duration) {
-                Timer.stopTimer(timerId); 
-                onTimeOut();
-            }
-        };
-
-        PubSub.subscribe({
-            event: "timeTicking",
-            listener: listener
-        });
-
-        Timer.timers[timerId] = { listener };
-        return timerId; 
-    }
-
-    static stopTimer(timerId) {
-        const timer = Timer.timers[timerId];
-        if (timer) {
-            PubSub.unsubscribe({
-                event: "timeTicking",
-                listener: timer.listener
-            }); 
-            delete Timer.timers[timerId]; 
-        }
-    }
-
     makeIntoMinutes(time){
         const minutes = String(time/60).charAt(0);
         let seconds = String(time % 60);
@@ -98,3 +98,48 @@ PubSub.subscribe({
         globalTimer.render(parentId);
     }
 });
+
+
+/* 
+class Edible should have timer
+
+
+ontick => pubsub.publish({event: "Tick"})
+
+
+class Timer{
+    static startGameTimer(){
+        setInterval(() => {
+
+        })
+    }
+
+    constructor(onTick, onEnd){
+        this.active = true; <= startar direkt
+    }
+
+
+
+    getTimeLeft()
+
+    pause(){
+        //unsubscribe
+        //
+    }
+
+    renderProgressBar(){
+        
+    }
+}
+
+ class Game{
+    constructor(){
+        this.timer = new Timer(ontick, onEnd)
+    }
+}
+
+
+
+
+
+*/
