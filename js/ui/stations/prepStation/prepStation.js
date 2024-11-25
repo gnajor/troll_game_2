@@ -1,6 +1,6 @@
 import { PubSub } from "../../../utils/pubsub.js";
 import { Edible } from "../../../entities/edible/edible.js";
-import { Timer } from "../../timer/timer.js";
+import { Timer } from "../../../entities/timer/timer.js";
 
 class PrepStation{
     constructor(details){
@@ -36,8 +36,7 @@ class PrepStation{
     startPreperation(edibleInstance){
         this.beingUsed = true;
         const duration = edibleInstance.edible.processes[0].time;
-
-        Timer.startTimer(
+        const timer = new Timer(
             duration, 
             function preperate(time){
                 edibleInstance.processPreparation(time, duration);    
@@ -46,6 +45,7 @@ class PrepStation{
                 edibleInstance.finishPreperation("preparation");
             }.bind(this)
         );
+        timer.start();
     }
 }
 

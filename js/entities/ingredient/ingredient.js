@@ -26,9 +26,6 @@ export class Ingredient{
     render(){
         this.element.textContent = `${this.ingredient.name}: ${this.ingredient.amount}`;
         this.parent.appendChild(this.element);
-        if(this.type === "troll"){
-            console.log("cum")
-        }
     }
 
     storeStartAmount(){ 
@@ -40,7 +37,6 @@ export class Ingredient{
     }
 
     process(counter, duration){
-        
         this.ingredient.amount = Number((0 + (counter * (this.startAmount / duration))).toFixed(2));
     }
 }

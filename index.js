@@ -6,8 +6,9 @@ import * as troll from "./js/entities/troll/troll.js";
 import * as edible from "./js/entities/edible/edible.js";
 import * as barStation from "./js/ui/stations/barStation/barStation.js";
 import * as prepStation from "./js/ui/stations/prepStation/prepStation.js";
-import * as timer from "./js/ui/timer/timer.js";
 import * as bin from "./js/ui/bin/bin.js";
+import * as timer from "./js/ui/timer/timer.js"
+import { Timer } from "./js/entities/timer/timer.js";
 import { GameSetup } from "./js/gameLogic/gameSetup.js";
 import { PubSub } from "./js/utils/pubsub.js";
 
@@ -17,6 +18,7 @@ export class App{
 
     constructor(){
         this.startGameSetup();
+        Timer.StartGameTimer();
     }
 
     async startGameSetup(){

@@ -1,7 +1,7 @@
 import { PubSub } from "../../utils/pubsub.js";
 import { Ingredient } from "../ingredient/ingredient.js";
 import { Edible } from "../edible/edible.js";
-import { Timer } from "../../ui/timer/timer.js";
+import { Timer } from "../timer/timer.js";
 
 class Troll{
     static trollInstances = [];
@@ -24,7 +24,7 @@ class Troll{
         trollElement.addEventListener("dragover", (event) => event.preventDefault());
         trollElement.addEventListener("drop", this.onDropDeleteAmount.bind(this));
 
-        for(let ingredientData of this.troll.ingredients){
+        for(const ingredientData of this.troll.ingredients){
             const ingredient = new Ingredient({
                 "data": ingredientData,
                 "parent": trollElement,

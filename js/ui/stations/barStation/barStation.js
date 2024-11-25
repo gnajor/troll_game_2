@@ -1,6 +1,6 @@
 import { PubSub } from "../../../utils/pubsub.js";
 import { Edible } from "../../../entities/edible/edible.js";
-import { Timer } from "../../timer/timer.js";
+import { Timer } from "../../../entities/timer/timer.js";
 
 class BarStation{
     constructor(details){
@@ -47,8 +47,7 @@ class BarStation{
     startTransformation(edibleInstance){
         this.beingUsed = true;
         const duration = edibleInstance.edible.processes[1].time;
-
-        this.timerId = Timer.startTimer(
+        const timer = new Timer(
             duration,
             function transform(time){
                 edibleInstance.processTransformation(time, duration);
@@ -58,6 +57,8 @@ class BarStation{
                 this.startDisposal(edibleInstance);
             }.bind(this)
         );
+
+        timer.start();
     }
 
     startDisposal(edibleInstance){
@@ -68,15 +69,17 @@ class BarStation{
         if(method === "Taken out"){
             edibleInstance.startDisposal();
 
-            Timer.startTimer(
+            const timer = new Timer(
                 duration,
-                function dispose(time){
-                    edibleInstance.processDisposing(time, duration);
+                function dispose(elapsedTime){
+                    edibleInstance.processDisposing(elapsedTime, duration);
                 }.bind(this),
                 function finishDisposing(){
                     edibleInstance.finishDisposing();
                 }.bind(this)
             );
+
+            timer.start();
         }
 
         else if(method === "Remains"){
@@ -86,9 +89,9 @@ class BarStation{
             this.destroyed = true;
         }
 
-        else if(method === "Given away"){
+/*         else if(method === "Given away"){
             
-        }
+        } */
     }
 }
 

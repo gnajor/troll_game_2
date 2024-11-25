@@ -1,145 +1,46 @@
 import { PubSub } from "../../utils/pubsub.js";
+import { Timer } from "../../entities/timer/timer.js";
 
-export class Timer{
+function renderTimer(parentId){
+    const parent = document.querySelector(parentId);
+    const gameDuration = 180;
 
-    static timers = {}
-
-    static startTimer(duration, onTick, onTimeOut) {
-        const timerId = Symbol("TimerID"); 
-        let elapsedTime = 0;
-
-        const listener = () => {
-            elapsedTime++;
-            onTick(elapsedTime);
-
-            if (elapsedTime >= duration) {
-                Timer.stopTimer(timerId); 
-                onTimeOut();
-            }
-        };
-
-        PubSub.subscribe({
-            event: "timeTicking",
-            listener: listener
-        });
-
-        Timer.timers[timerId] = { listener };
-        return timerId; 
+    if(!parent){
+        console.error("Parent Element Error");
+        return;
     }
 
-    static stopTimer(timerId) {
-        const timer = Timer.timers[timerId];
-        if (timer) {
-            PubSub.unsubscribe({
-                event: "timeTicking",
-                listener: timer.listener
-            }); 
-            delete Timer.timers[timerId]; 
+    const timerElement = document.createElement("div");
+    timerElement.id = "timerContainer";
+    timerElement.textContent = makeIntoMinutes(180);
+    parent.appendChild(timerElement);
+
+    const mainTimer = new Timer(
+        gameDuration,
+        function forEachTick(elapsedTime){
+            timerElement.textContent = makeIntoMinutes(gameDuration - elapsedTime);
+        },
+        function(){
+            console.log("game over");
         }
-    }
+    );
 
-    constructor(){
-        this.gameDuration = 180;
-        this.timerCounter = 0;
-    }
-
-    render(parentId){
-        const parent = document.querySelector(parentId);
-
-        if(!parent){
-            console.error("Parent Element Error");
-            return;
-        }
-        const timerElement = document.createElement("div");
-        timerElement.id = "timerContainer";
-        timerElement.textContent = this.makeIntoMinutes(this.gameDuration);
-        parent.appendChild(timerElement);
-
-        this.startGlobalTimer(timerElement);
-    }
-
-    startGlobalTimer(timerElement){
-        let gameTimer = 0;
-
-        const intervalId = setInterval(() => {
-            this.timerCounter++;
-
-            gameTimer = this.gameDuration - this.timerCounter;
-            timerElement.textContent = this.makeIntoMinutes(gameTimer);
-
-            PubSub.publish({
-                event: "timeTicking",
-                details: null
-            });
-
-            if(this.timerCounter === this.gameDuration){
-                clearInterval(intervalId);
-            }
-        }, 1000);
-    }
-
-    makeIntoMinutes(time){
-        const minutes = String(time/60).charAt(0);
-        let seconds = String(time % 60);
-    
-        if(seconds.length === 1){
-            seconds = "0" + seconds;
-        }
-        return `0${minutes}:${seconds}`;
-    }
-
+    mainTimer.start();
 }
 
+function makeIntoMinutes(time){
+    const minutes = String(time/60).charAt(0);
+    let seconds = String(time % 60);
+
+    if(seconds.length === 1){
+        seconds = "0" + seconds;
+    }
+    return `0${minutes}:${seconds}`;
+} 
 
 PubSub.subscribe({
     event: "renderTimer",
     listener: (parentId) => {
-        const globalTimer = new Timer()
-        globalTimer.render(parentId);
+        renderTimer(parentId);
     }
 });
-
-
-/* 
-class Edible should have timer
-
-
-ontick => pubsub.publish({event: "Tick"})
-
-
-class Timer{
-    static startGameTimer(){
-        setInterval(() => {
-
-        })
-    }
-
-    constructor(onTick, onEnd){
-        this.active = true; <= startar direkt
-    }
-
-
-
-    getTimeLeft()
-
-    pause(){
-        //unsubscribe
-        //
-    }
-
-    renderProgressBar(){
-        
-    }
-}
-
- class Game{
-    constructor(){
-        this.timer = new Timer(ontick, onEnd)
-    }
-}
-
-
-
-
-
-*/

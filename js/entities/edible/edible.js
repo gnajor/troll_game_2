@@ -31,7 +31,7 @@ export class Edible{
         ingredientContainer.id = "ingredient_container";
         edibleElement.appendChild(ingredientContainer);
 
-        for(let ingredientData of this.edible.ingredients){
+        for(const ingredientData of this.edible.ingredients){
             const ingredient = new Ingredient({
                 "data": ingredientData, 
                 "parent": ingredientContainer, 
@@ -52,7 +52,7 @@ export class Edible{
         textContainer.textContent = this.edible.edible + ` (${this.edible.processes[0].preparation})`;
 
         const ingredientInstances = Ingredient.ingredientInstances.edible.filter((ingredient) => ingredient.id === this.id);
-        for(let ingredientInstance of ingredientInstances){
+        for(const ingredientInstance of ingredientInstances){
             ingredientInstance.render(); 
         }  
 
@@ -135,7 +135,7 @@ export class Edible{
         const progression = this.element.querySelector(".progress");
         const ingredientInstances = Ingredient.ingredientInstances.edible.filter((ingredient) => ingredient.id === this.id);
 
-        for(let ingredientInstance of ingredientInstances){ 
+        for(const ingredientInstance of ingredientInstances){ 
             if(method === "prep"){
                 ingredientInstance.process(counter, duration);
             }
