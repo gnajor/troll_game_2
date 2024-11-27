@@ -1,6 +1,5 @@
 import { PubSub } from "../../../utils/pubsub.js";
 import { Edible } from "../../../entities/edible/edible.js";
-import { Timer } from "../../../entities/timer/timer.js";
 
 class PrepStation{
     constructor(details){
@@ -28,24 +27,17 @@ class PrepStation{
         const process = edibleInstance.edible.processes[0].preparation;
         
         if(process === this.prepMethod && !this.beingUsed && !edibleInstance.prepared){
-            this.startPreperation(edibleInstance);
-            edibleInstance.startPreperation(event.target, this);
+            this.startUsing();
+            edibleInstance.startProcess("prep", event.target, this);
         }
     }
 
-    startPreperation(edibleInstance){
+    startUsing(){
         this.beingUsed = true;
-        const duration = edibleInstance.edible.processes[0].time;
-        const timer = new Timer(
-            duration, 
-            function preperate(time){
-                edibleInstance.processPreparation(time, duration);    
-            }.bind(this), 
-            function finishPreparation(){
-                edibleInstance.finishPreperation("preparation");
-            }.bind(this)
-        );
-        timer.start();
+    }
+
+    finishedUsing(){
+        this.beingUsed = false; 
     }
 }
 
@@ -53,6 +45,5 @@ PubSub.subscribe({
     event: "renderPrepStations",
     listener: (details) => {
         const prepStation = new PrepStation(details);
-
     }
 });

@@ -1,7 +1,6 @@
 import { PubSub } from "../../utils/pubsub.js";
 import { Ingredient } from "../ingredient/ingredient.js";
 import { Edible } from "../edible/edible.js";
-import { Timer } from "../timer/timer.js";
 
 class Troll{
     static trollInstances = [];
@@ -46,7 +45,7 @@ class Troll{
         const edibleIngredients = edibleInstance.edible.ingredients;
         const trollIngredients = Ingredient.ingredientInstances.troll.filter((ingredient) => ingredient.id === this.id);
 
-        Timer.stopTimer(edibleInstance.currentStation.timerId);
+        edibleInstance.timer.stop();
 
         trollIngredients.forEach(trollIngredient => {
             const specificEdibleIngredient = edibleIngredients.find(edibleIngredient => edibleIngredient.name === trollIngredient.ingredient.name);

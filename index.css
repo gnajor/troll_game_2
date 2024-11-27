@@ -123,6 +123,14 @@ body:has(#render_button){
     border-radius: 3px;
 }
 
+.progress.rotting{
+    background-color: red;
+}
+
+.progress.dispose{
+    background-color: black;
+}
+
 
 @media only screen and (max-width: 1600px) {
     html{

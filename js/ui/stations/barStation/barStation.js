@@ -1,6 +1,5 @@
 import { PubSub } from "../../../utils/pubsub.js";
 import { Edible } from "../../../entities/edible/edible.js";
-import { Timer } from "../../../entities/timer/timer.js";
 
 class BarStation{
     constructor(details){
@@ -39,59 +38,23 @@ class BarStation{
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
 
         if(!this.beingUsed && !edibleInstance.transformed && edibleInstance.prepared && !this.destroyed){
-            this.startTransformation(edibleInstance);
-            edibleInstance.startTransformation(event.target, this);
+            this.startUsing();
+            edibleInstance.startProcess("trans", event.target, this);
         }
     }
 
-    startTransformation(edibleInstance){
+    destroy(){
+        this.stationElement.textContent = "X";
+        this.stationElement.classList.add("destroyed");
+        this.destroyed = true;
+    }
+
+    startUsing(){
         this.beingUsed = true;
-        const duration = edibleInstance.edible.processes[1].time;
-        const timer = new Timer(
-            duration,
-            function transform(time){
-                edibleInstance.processTransformation(time, duration);
-            }.bind(this),
-            function finishTransformation(){
-                edibleInstance.finishTransformation();
-                this.startDisposal(edibleInstance);
-            }.bind(this)
-        );
-
-        timer.start();
     }
 
-    startDisposal(edibleInstance){
-        const method = edibleInstance.edible.processes[2].disposal;
-        const duration = edibleInstance.edible.processes[2].time;
-
-
-        if(method === "Taken out"){
-            edibleInstance.startDisposal();
-
-            const timer = new Timer(
-                duration,
-                function dispose(elapsedTime){
-                    edibleInstance.processDisposing(elapsedTime, duration);
-                }.bind(this),
-                function finishDisposing(){
-                    edibleInstance.finishDisposing();
-                }.bind(this)
-            );
-
-            timer.start();
-        }
-
-        else if(method === "Remains"){
-            edibleInstance.destroy();
-            this.stationElement.textContent = "X";
-            this.stationElement.classList.add("destroyed");
-            this.destroyed = true;
-        }
-
-/*         else if(method === "Given away"){
-            
-        } */
+    finishedUsing(){
+        this.beingUsed = false; 
     }
 }
 

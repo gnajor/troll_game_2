@@ -1,5 +1,6 @@
 import { PubSub } from "../../utils/pubsub.js";
 import { Ingredient } from "../ingredient/ingredient.js";
+import { Timer } from "../timer/timer.js";
 
 export class Edible{
     static edibleInstances = [];
@@ -12,6 +13,7 @@ export class Edible{
         this.prepared = false;
         this.transformed = false;
         this.currentStation = null;
+        this.timer = null;
         this.parent = document.querySelector(parentId);
         this.element = this.create();
         Edible.edibleInstances.push(this);
@@ -55,109 +57,42 @@ export class Edible{
         for(const ingredientInstance of ingredientInstances){
             ingredientInstance.render(); 
         }  
-
-        if(this.beingProcessed){
-            const progressBar = this.element.querySelector(".progressBar")
-
-            if(!progressBar){
-                const progressBar = document.createElement("div");
-                const progression = document.createElement("div");
-                progressBar.className = "progressBar";
-                progression.className = "progress";
-                this.element.appendChild(progressBar);
-                progressBar.appendChild(progression);
-            }
-            else{
-                progressBar.innerHTML = "";
-                const progression = document.createElement("div");
-                progression.className = "progress";
-                progressBar.appendChild(progression);
-            }
-        }
     }
 
     destroy(){
-        this.currentStation.beingUsed = false;
+        this.currentStation.finishedUsing();
         this.element.remove();
     }
 
-    startPreperation(newParent, currentStation){
-        this._startCommon(newParent, currentStation);
-        this.element.removeAttribute("draggable");
-    }
-
-    startTransformation(newParent, currentStation){
-        this._startCommon(newParent, currentStation);
-    }
-
-    startDisposal(){
-        this.element.removeAttribute("draggable");
-    }
-
-    processPreparation(counter, duration){
-        this._processCommon(counter, duration, "prep");
-    }
-
-    processTransformation(counter, duration){
-        this._processCommon(counter, duration, "trans");
-    }
-
-    processDisposing(counter, duration){
-        this._processCommon(counter, duration, "dispose");
-    }
-
-    finishPreperation(){
-        this.prepared = true;
-        this._finishCommon();
-    }
-
-    finishDisposing(){
-        this.destroy();
-    }
-
-    finishTransformation(){
-        this.transformed = true;
-        this._finishCommon();
-    }
-
-    _startCommon(newParent, currentStation){
+    startProcess(processType, newParent = this.parent, currentStation = this.currentStation){
+        const processDetails = this.getProcessDetails(processType);
+        processDetails.onStart();
+        
         if(this.currentStation){
-            this.currentStation.beingUsed = false;
+            this.currentStation.finishedUsing();
         }
 
+        this.timer = new Timer(
+            processDetails.duration, 
+            (time) => processDetails.onTick(time, processDetails.duration), 
+            () => processDetails.onFinish()
+        );
+
+        this.timer.createProgressbar(this.element, processType);
+        this.timer.start();
         this.currentStation = currentStation;
         this.beingProcessed = true;
         this.parent = newParent;
         this.render();
     }
 
-    _processCommon(counter, duration, method){
-        const progression = this.element.querySelector(".progress");
+    process(counter, duration, processType){
+        const processDetails = this.getProcessDetails(processType);
         const ingredientInstances = Ingredient.ingredientInstances.edible.filter((ingredient) => ingredient.id === this.id);
 
         for(const ingredientInstance of ingredientInstances){ 
-            if(method === "prep"){
-                ingredientInstance.process(counter, duration);
-            }
-            else if(method === "trans"){
-                ingredientInstance.rot(counter, duration);
-            }
-            else if(method === "dispose"){
-                ingredientInstance.process(0, duration)
-            }
+            processDetails.ingredientProcess(ingredientInstance, counter, duration)
             ingredientInstance.render(); 
-        }
-
-        if(method === "trans"){
-            progression.style.backgroundColor = "red";
-        }
-
-        else if(method === "dispose"){
-            progression.style.backgroundColor = "black";
-        }
-
-        if(progression){
-            progression.style.width = (counter / duration) * 100 + "%";
         }
     }
 
@@ -169,6 +104,60 @@ export class Edible{
     onDragStart(event){
         event.dataTransfer.setData("text/plain", this.id);
     }
+
+    getProcessDetails(processType){
+        const processDetails = {
+            "prep": {
+                duration: this.edible.processes[0].time,
+                onStart: () => {this.element.removeAttribute("draggable")},
+                onTick: (counter, duration) => {this.process(counter, duration, "prep"); },
+                onFinish: () => {
+                    this.prepared = true;
+                    this._finishCommon();
+                },
+                ingredientProcess: (ingredient, counter, duration) => ingredient.process(counter, duration),
+            },
+
+            "trans" : {
+                duration: this.edible.processes[1].time,
+                onStart: () => {},
+                onTick: (counter, duration) => this.process(counter, duration, "trans"),
+                onFinish: () => {
+                    this.transformed = true;
+                    this._finishCommon();
+                    const method = this.edible.processes[2].disposal;
+        
+                    if(method === "Taken out"){
+                        this.startProcess("dispose");
+                        this.element.removeAttribute("draggable");
+                    }
+            
+                    else if(method === "Remains"){
+                        this.destroy();
+                        this.currentStation.destroy();
+                    }
+            
+                    else if(method === "Given away"){
+                        
+                    }
+                },
+                ingredientProcess: (ingredient, counter, duration) => ingredient.rot(counter, duration),
+            },
+
+            "dispose": {
+                duration: this.edible.processes[2].time,
+                
+                onStart: () => {this.element.removeAttribute("draggable");},
+                onTick: (counter, duration) => this.process(counter, duration, "dispose"),
+                onFinish: () => {
+                    this.destroy();
+                },
+                ingredientProcess: (ingredient, counter, duration) => ingredient.process(0, duration),
+            }
+        } 
+
+        return processDetails[processType];
+    }
 }
 
 PubSub.subscribe({
@@ -178,114 +167,3 @@ PubSub.subscribe({
         edible.render();
     }
 });
-
-
-//part 4
-
-/* 
-    
-
-
-*/
-
-
-
-//Part 3???
-/* 
-    freezable borde finnas i edible || vilket du har :) 
-    this.action = this.edible.process[0].action
-    preperation borde probably heta station i gameLogic
-
-    if(food.station === this.station) || Din => process === this.prepMethod
-
-    You don't need to use edible.render when you want the station to render 
-    so you want a render and a create in prepStation
-
-    använd metoder för att ändra this i edible ändra INTE instansens värde hos PrepStation
-    ha en metod för startCooking or whatever istället för att ha edibleInstance.beingProcessed = true;
-
-    ha allting i state.js eller allting i entities state
-    
-    ha en timer för hela spelet PubSub.js
-    
-    Kan ha en class Timer som har Timer.start(tid, vad som ska hända varenda gång den tickar, this.timOut) när man droppar den; 
-
-    
-    Stationer fungerar på samma sätt:
-        Preparation
-            vissa drar ned, vissa drar upp
-            tills tiden är klar || man kan inte ta ut den mid
-            ruttnar så fort dom är tillagade
-
-            Även här kan de inte röras om de har ruttnat
-
-        Baren
-            Börjar ruttna efter tid (bara ruttna)
-            om den har "bli kvar"
-            börjar ruttna
-
-            ges bort (någon kommer att ta bort den, måste vänta till någon kommer)
-            bär ut (slänger trollen )
-
-            //om maten blir kvar då händer kassering
-
-        Troll
-            Maten försvinner
-            Trollet tar så mycket den kan ta
-
-        Trashas
-            Mat kan trashas
-
-
-
-        Pantry
-
-        Station
-            - prep
-            - när den är klar ruttnar den
-                - tiden får man från Transformation
-
-        Bar
-         - börjar ruttna
-         - När den har ruttnat (kassering)
-         - 
-
-*/
-
-
-
-
-
-
-
-
-
-//ingredients should have it own class
-
-/* Edible{
-    beingPrep(prepStationInstance){
-        this.beingProcessed = true;
-        for(let ingredient of ingredients.dom(prep){
-        
-        })
-    }
-} */
-
-//all logic about the edible should be in the edible 
-//so there should be a method in Edible that says being prepped which then changes its ingredients and then render them.
-//so then in the prepStation you can say: edibleInstance.parent = newParent.
-//render = update data
-
-//if render is being called then it will not just render its data on new, as it will instead just render another one.
-
-//a parent class that could have create, render and what do they have in common || composition function
-//make dropzone, 
-
-//file system
-//entities
-//NO compenents only Entites
-//In index renderStructure and all that eller i app.js
-
-//drag and drop
-
-//timer is going to effect the edible instance every time it ticks
