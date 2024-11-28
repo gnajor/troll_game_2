@@ -1,6 +1,7 @@
 import { PubSub } from "../../utils/pubsub.js";
 import { Ingredient } from "../ingredient/ingredient.js";
 import { Edible } from "../edible/edible.js";
+import { globals } from "../../utils/globals.js";
 
 class Troll{
     static trollInstances = [];
@@ -23,6 +24,11 @@ class Troll{
         trollElement.addEventListener("dragover", (event) => event.preventDefault());
         trollElement.addEventListener("drop", this.onDropDeleteAmount.bind(this));
 
+        const trollName = this.troll.troll.toLowerCase();
+        const image = document.createElement("img");
+        image.setAttribute("src", globals.creatures[trollName])
+        trollElement.appendChild(image);
+
         for(const ingredientData of this.troll.ingredients){
             const ingredient = new Ingredient({
                 "data": ingredientData,
@@ -42,6 +48,11 @@ class Troll{
     onDropDeleteAmount(event){
         const id = Number(event.dataTransfer.getData("text/plain")); 
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
+
+        if(!edibleInstance.startedTransform){
+            return;
+        }
+
         const edibleIngredients = edibleInstance.edible.ingredients;
         const trollIngredients = Ingredient.ingredientInstances.troll.filter((ingredient) => ingredient.id === this.id);
 

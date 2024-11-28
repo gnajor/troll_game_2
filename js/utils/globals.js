@@ -1,4 +1,12 @@
 export const globals = {
+    creatures:{
+        stonefoot: "../media/images/characters/troll_1.gif",
+        barkhide: "../media/images/characters/troll_2.gif",
+        mossgrumble: "../media/images/characters/troll_3.gif",
+        thornclaw: "../media/images/characters/troll_4.gif",
+        gnarroot: "../media/images/characters/troll_5.gif"
+    },
+    
     shuffle(array){
         const shuffled = [];
         const arrayLength = array.length;

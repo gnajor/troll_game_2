@@ -34,4 +34,15 @@ export class App{
     }
 }
 
-new App();
+function renderButton(parent){
+    const button = document.createElement("button");
+    button.id ="start_game_button";
+    button.textContent = "Start";
+    parent.appendChild(button);
+
+    button.addEventListener("click", function renderGame() {
+        new App();
+    });
+}
+
+renderButton(document.body)

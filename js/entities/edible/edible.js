@@ -11,6 +11,7 @@ export class Edible{
         this.id = id;
         this.beingProcessed = false;
         this.prepared = false;
+        this.startedTransform = false;
         this.transformed = false;
         this.currentStation = null;
         this.timer = null;
@@ -120,7 +121,7 @@ export class Edible{
 
             "trans" : {
                 duration: this.edible.processes[1].time,
-                onStart: () => {},
+                onStart: () => {this.startedTransform = true},
                 onTick: (counter, duration) => this.process(counter, duration, "trans"),
                 onFinish: () => {
                     this.transformed = true;
