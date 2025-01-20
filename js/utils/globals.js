@@ -1,10 +1,11 @@
 export const globals = {
     creatures:{
-        stonefoot: "../media/images/characters/troll_1.gif",
-        barkhide: "../media/images/characters/troll_2.gif",
-        mossgrumble: "../media/images/characters/troll_3.gif",
-        thornclaw: "../media/images/characters/troll_4.gif",
-        gnarroot: "../media/images/characters/troll_5.gif"
+        grug: "../media/images/characters/troll_1.gif",
+        snarg: "../media/images/characters/troll_2.gif",
+        bork: "../media/images/characters/troll_3.gif",
+        klog: "../media/images/characters/troll_4.gif",
+        zorp: "../media/images/characters/troll_5.gif",
+        frim: "../media/images/characters/troll_1.gif",
     },
     
     shuffle(array){

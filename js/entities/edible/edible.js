@@ -52,7 +52,7 @@ export class Edible{
         this.parent.appendChild(this.element);
 
         const textContainer = this.element.querySelector(".text_container");
-        textContainer.textContent = this.edible.edible + ` (${this.edible.processes[0].preparation})`;
+        textContainer.textContent = this.edible.name + ` (${this.edible.prep_method})`;
 
         const ingredientInstances = Ingredient.ingredientInstances.edible.filter((ingredient) => ingredient.id === this.id);
         for(const ingredientInstance of ingredientInstances){

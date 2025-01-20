@@ -8,6 +8,9 @@ class Troll{
 
     constructor(details){
         const {data, id, parentId} = details;
+
+        console.log(data);
+
         this.parent = document.querySelector(parentId);
         this.troll = data;
         this.id = id;
@@ -24,7 +27,7 @@ class Troll{
         trollElement.addEventListener("dragover", (event) => event.preventDefault());
         trollElement.addEventListener("drop", this.onDropDeleteAmount.bind(this));
 
-        const trollName = this.troll.troll.toLowerCase();
+        const trollName = this.troll.name.toLowerCase();
         const image = document.createElement("img");
         image.setAttribute("src", globals.creatures[trollName])
         trollElement.appendChild(image);

@@ -1,0 +1,261 @@
+{
+    "foodItems": [
+        {
+            "name": "Burger",
+            "prepMethod": "Grill",
+            "prepTime": 14,
+            "rotTime": 20,
+            "ingredients": [
+                {
+                    "name": "Bun",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Patty",
+                    "minAmount": 10,
+                    "maxAmount": 15
+                },
+                {
+                    "name": "Lettuce",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                }
+            ]
+        },
+        {
+            "name": "Pizza",
+            "prepMethod": "Oven",
+            "prepTime": 18,
+            "rotTime": 24,
+            "ingredients": [
+                {
+                    "name": "Dough",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Cheese",
+                    "minAmount": 8,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Tomato Sauce",
+                    "minAmount": 7,
+                    "maxAmount": 10
+                }
+            ]
+        },
+        {
+            "name": "Salad",
+            "prepMethod": "Chop",
+            "prepTime": 10,
+            "rotTime": 16,
+            "ingredients": [
+                {
+                    "name": "Lettuce",
+                    "minAmount": 10,
+                    "maxAmount": 15
+                },
+                {
+                    "name": "Tomato",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                },
+                {
+                    "name": "Cucumber",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                }
+            ]
+        },
+        {
+            "name": "Wrap",
+            "prepMethod": "Roll",
+            "prepTime": 12,
+            "rotTime": 18,
+            "ingredients": [
+                {
+                    "name": "Tortilla",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Chicken",
+                    "minAmount": 10,
+                    "maxAmount": 15
+                },
+                {
+                    "name": "Cheese",
+                    "minAmount": 8,
+                    "maxAmount": 12
+                }
+            ]
+        },
+        {
+            "name": "Soup",
+            "prepMethod": "Boil",
+            "prepTime": 16,
+            "rotTime": 24,
+            "ingredients": [
+                {
+                    "name": "Broth",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Carrot",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                },
+                {
+                    "name": "Potato",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                }
+            ]
+        },
+        {
+            "name": "Sandwich",
+            "prepMethod": "Assemble",
+            "prepTime": 10,
+            "rotTime": 16,
+            "ingredients": [
+                {
+                    "name": "Bread",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Ham",
+                    "minAmount": 10,
+                    "maxAmount": 15
+                },
+                {
+                    "name": "Cheese",
+                    "minAmount": 8,
+                    "maxAmount": 12
+                }
+            ]
+        }
+    ],
+    
+    "trolls": [
+        {
+            "name": "Grug",
+            "ingredients": [
+                {
+                    "name": "Bun",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Patty",
+                    "minAmount": 10,
+                    "maxAmount": 15
+                }
+            ],
+            "patience": 24
+        },
+        {
+            "name": "Snarg",
+            "ingredients": [
+                {
+                    "name": "Lettuce",
+                    "minAmount": 8,
+                    "maxAmount": 15
+                },
+                {
+                    "name": "Tomato",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                },
+                {
+                    "name": "Cucumber",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                }
+            ],
+            "patience": 30
+        },
+        {
+            "name": "Bork",
+            "ingredients": [
+                {
+                    "name": "Dough",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Tomato Sauce",
+                    "minAmount": 7,
+                    "maxAmount": 10
+                },
+                {
+                    "name": "Cheese",
+                    "minAmount": 8,
+                    "maxAmount": 12
+                }
+            ],
+            "patience": 20
+        },
+        {
+            "name": "Klog",
+            "ingredients": [
+                {
+                    "name": "Tortilla",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Chicken",
+                    "minAmount": 10,
+                    "maxAmount": 15
+                }
+            ],
+            "patience": 28
+        },
+        {
+            "name": "Zorp",
+            "ingredients": [
+                {
+                    "name": "Bread",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Ham",
+                    "minAmount": 10,
+                    "maxAmount": 15
+                },
+                {
+                    "name": "Cheese",
+                    "minAmount": 8,
+                    "maxAmount": 12
+                }
+            ],
+            "patience": 24
+        },
+        {
+            "name": "Frim",
+            "ingredients": [
+                {
+                    "name": "Broth",
+                    "minAmount": 10,
+                    "maxAmount": 12
+                },
+                {
+                    "name": "Carrot",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                },
+                {
+                    "name": "Potato",
+                    "minAmount": 5,
+                    "maxAmount": 10
+                }
+            ],
+            "patience": 26
+        }
+    ]
+}
