@@ -8,9 +8,10 @@ function insert_food_items($food_items, $pdo){
         $prep_method = $item["prepMethod"];
         $prep_time = $item["prepTime"];
         $rot_time = $item["rotTime"];
+        $dispose_time = $item["disposeTime"];
         $ingredients = $item["ingredients"];
 
-        $sql = "INSERT INTO food_items (name, prep_method, prep_time, rot_time) VALUES ('$name', '$prep_method', '$prep_time', '$rot_time')";
+        $sql = "INSERT INTO food_items (name, prep_method, prep_time, rot_time, dispose_time) VALUES ('$name', '$prep_method', '$prep_time', '$rot_time', '$dispose_time')";
         $pdo->exec($sql);
 
         foreach($ingredients as $ingredient){

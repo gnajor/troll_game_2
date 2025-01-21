@@ -9,6 +9,7 @@ try{
 
     insert_table_data($pdo);
 }
+
 catch(PDOException $e){
     echo "Error: " . $e->getMessage();
 }

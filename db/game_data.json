@@ -5,6 +5,7 @@
             "prepMethod": "Grill",
             "prepTime": 14,
             "rotTime": 20,
+            "disposeTime": 34,
             "ingredients": [
                 {
                     "name": "Bun",
@@ -28,6 +29,7 @@
             "prepMethod": "Oven",
             "prepTime": 18,
             "rotTime": 24,
+            "disposeTime": 42,
             "ingredients": [
                 {
                     "name": "Dough",
@@ -51,6 +53,7 @@
             "prepMethod": "Chop",
             "prepTime": 10,
             "rotTime": 16,
+            "disposeTime": 26,
             "ingredients": [
                 {
                     "name": "Lettuce",
@@ -74,6 +77,7 @@
             "prepMethod": "Roll",
             "prepTime": 12,
             "rotTime": 18,
+            "disposeTime": 30,
             "ingredients": [
                 {
                     "name": "Tortilla",
@@ -97,6 +101,7 @@
             "prepMethod": "Boil",
             "prepTime": 16,
             "rotTime": 24,
+            "disposeTime": 40,
             "ingredients": [
                 {
                     "name": "Broth",
@@ -120,6 +125,7 @@
             "prepMethod": "Assemble",
             "prepTime": 10,
             "rotTime": 16,
+            "disposeTime": 26,
             "ingredients": [
                 {
                     "name": "Bread",

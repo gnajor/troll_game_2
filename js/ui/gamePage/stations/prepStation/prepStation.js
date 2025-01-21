@@ -24,9 +24,9 @@ class PrepStation{
     onDropCheckAndStartPrep(event){
         const id = Number(event.dataTransfer.getData("text/plain")); 
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
-        const process = edibleInstance.edible.processes[0].preparation;
+        const method = edibleInstance.edible.prep_method;
         
-        if(process === this.prepMethod && !this.beingUsed && !edibleInstance.prepared){
+        if(method === this.prepMethod && !this.beingUsed && !edibleInstance.prepared){
             this.startUsing();
             edibleInstance.startProcess("prep", event.target, this);
         }

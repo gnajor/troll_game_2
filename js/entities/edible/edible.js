@@ -109,7 +109,7 @@ export class Edible{
     getProcessDetails(processType){
         const processDetails = {
             "prep": {
-                duration: this.edible.processes[0].time,
+                duration: this.edible.prep_time,
                 onStart: () => {this.element.removeAttribute("draggable")},
                 onTick: (counter, duration) => {this.process(counter, duration, "prep"); },
                 onFinish: () => {
@@ -120,34 +120,20 @@ export class Edible{
             },
 
             "trans" : {
-                duration: this.edible.processes[1].time,
+                duration: this.edible.rot_time,
                 onStart: () => {this.startedTransform = true},
                 onTick: (counter, duration) => this.process(counter, duration, "trans"),
                 onFinish: () => {
                     this.transformed = true;
                     this._finishCommon();
-                    const method = this.edible.processes[2].disposal;
-        
-                    if(method === "Taken out"){
-                        this.startProcess("dispose");
-                        this.element.removeAttribute("draggable");
-                    }
-            
-                    else if(method === "Remains"){
-                        this.destroy();
-                        this.currentStation.destroy();
-                    }
-            
-                    else if(method === "Given away"){
-                        
-                    }
+                    this.destroy();
+                    this.currentStation.destroy();
                 },
                 ingredientProcess: (ingredient, counter, duration) => ingredient.rot(counter, duration),
             },
 
             "dispose": {
-                duration: this.edible.processes[2].time,
-                
+                duration: this.edible.dispose_time,
                 onStart: () => {this.element.removeAttribute("draggable");},
                 onTick: (counter, duration) => this.process(counter, duration, "dispose"),
                 onFinish: () => {

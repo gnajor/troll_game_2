@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS food_items(
     name VARCHAR(64) NOT NULL UNIQUE,
     prep_method VARCHAR(64) NOT NULL,
     prep_time INTEGER NOT NULL,
-    rot_time INTEGER NOT NULL
+    rot_time INTEGER NOT NULL,
+    dispose_time INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS ingredients(

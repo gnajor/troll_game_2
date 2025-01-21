@@ -30,13 +30,14 @@ if($_GET["foodItems"] === "all"){
                 fi.prep_method, 
                 fi.prep_time, 
                 fi.rot_time,
+                fi.dispose_time,
                 GROUP_CONCAT(i.id) as ingredient_ids, 
                 GROUP_CONCAT(i.name) as ingredient_names, 
-                GROUP_CONCAT(RANDOM() % (fii.max - fii.min + 1) + fii.min) AS ingredient_amounts
+                GROUP_CONCAT(RANDOM() % (fii.max - fii.min + 1) + fii.min) AS ingredient_amounts 
             FROM food_items fi
             LEFT JOIN food_item_ingredients fii ON fi.id = fii.food_item_id
             LEFT JOIN ingredients i ON i.id = fii.ingredient_id
-            GROUP BY fi.id";
+            GROUP BY fi.id"; //not always random between two nums
 
     $stmt = $pdo->query($sql);
     $food = $stmt->fetchAll(PDO::FETCH_ASSOC);

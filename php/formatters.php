@@ -1,5 +1,7 @@
 <?php
 function format_and_insert_data($data, $type){
+    /* echo var_dump($data); */
+
     $formatted_data = [];
 
     foreach($data as $data_item){
@@ -14,7 +16,9 @@ function format_and_insert_data($data, $type){
 
         if($type === "food"){
             $formatted_item["prep_method"] = $data_item["prep_method"];
+            $formatted_item["prep_time"] = $data_item["prep_time"];
             $formatted_item["rot_time"] = $data_item["rot_time"];
+            $formatted_item["dispose_time"] = $data_item["dispose_time"];
         }
         else{
             $formatted_item["patience"] = $data_item["patience"];
@@ -25,7 +29,7 @@ function format_and_insert_data($data, $type){
             $formatted_item["ingredients"][] = [
                 "id" => intval($ids[$i]),
                 "name" => $names[$i],
-                "amount" => $amounts[$i]
+                "amount" => intval($amounts[$i])
             ];
         }
         $formatted_data[] = $formatted_item;

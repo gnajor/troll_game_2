@@ -22,10 +22,8 @@ function renderBin(parentId){
     bin.addEventListener("drop", function onDropCheckAndDestroy(event){
         const id = Number(event.dataTransfer.getData("text/plain")); 
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
-        const disposalMethod = edibleInstance.edible.processes[2].disposal;
-
         
-        if(edibleInstance.transformed && edibleInstance.prepared && disposalMethod === "Given away"){
+        if(edibleInstance.prepared && edibleInstance.startedTransform){
             edibleInstance.destroy();
         }
     });

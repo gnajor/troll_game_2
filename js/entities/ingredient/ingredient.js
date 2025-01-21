@@ -1,5 +1,3 @@
-import { globals } from "../../utils/globals.js";
-
 export class Ingredient{
 
     static ingredientInstances = {
@@ -37,6 +35,7 @@ export class Ingredient{
     }
 
     process(counter, duration){
+
         this.ingredient.amount = Number((0 + (counter * (this.startAmount / duration))).toFixed(2));
     }
 }
