@@ -30,9 +30,8 @@ function insert_food_items($food_items, $pdo){
 function insert_trolls($trolls, $pdo){
     foreach($trolls as $troll){
         $name = $troll["name"];
-        $patience = $troll["patience"];
 
-        $sql = "INSERT INTO trolls (name, patience) VALUES ('$name', '$patience')";
+        $sql = "INSERT INTO trolls (name) VALUES ('$name')";
         $pdo->exec($sql);
     }
 }
@@ -94,8 +93,58 @@ function insert_game_instance_on_start($pdo, $user_name){
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $user_id = $user["id"];
 
-    $sql = "INSERT INTO game_instances (user_id, score) VALUES ('$user_id', '0')"; //might be wrong
+    $sql = "INSERT INTO game_instances (user_id) VALUES ('$user_id')";
     $pdo->exec($sql);
 }
+
+
+function insert_game_instance_data($game_instance_id, $type, $data, $pdo){
+    foreach($data as $item){
+        $item_name = $item["name"];
+        $ingredients = $item["ingredients"];
+    
+        if($type === "troll"){
+            $main_table = "trolls";
+            $link_table = "game_instance_trolls";
+            $ingredient_table = "game_instance_troll_ingredients";
+            $id_column = "troll_id";
+        }
+        else if($type === "food"){
+            $main_table = "food_items";
+            $link_table = "game_instance_food_items";
+            $ingredient_table = "game_instance_food_item_ingredients";
+            $id_column = "food_item_id";
+        }
+
+        $sql = "SELECT id FROM $main_table WHERE name='$item_name'";
+        $stmt = $pdo->query($sql);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $item_id = $result["id"];
+        
+        $stmt = $pdo->prepare("INSERT INTO $link_table (game_instance_id, $id_column) VALUES (:game_instance_id, :item_id)");
+        $stmt->execute([
+            "game_instance_id" => $game_instance_id,
+            "item_id" => $item_id
+        ]);
+
+        foreach($ingredients as $ingredient){
+            $ingredient_name = $ingredient["name"];
+            $ingredient_amount = $ingredient["amount"];
+
+            $stmt = $pdo->query("SELECT id FROM ingredients WHERE name='$ingredient_name'");
+            $resulted_ingredient = $stmt->fetch(PDO::FETCH_ASSOC);
+            $ingredient_id = $resulted_ingredient["id"];
+
+            $stmt = $pdo->prepare("INSERT INTO $ingredient_table (ingredient_id, game_instance_id, $id_column, amount) VALUES (:ingredient_id, :game_instance_id, :item_id, :amount)");
+            $stmt->execute([
+                "game_instance_id" => $game_instance_id,
+                "ingredient_id" => $ingredient_id,
+                "item_id" => $item_id,
+                "amount" => $ingredient_amount
+            ]);
+        }
+    }
+}
+
 
 ?>

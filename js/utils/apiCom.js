@@ -8,8 +8,6 @@ export async function apiCom(data, action){
                 name: data.name,
                 password: data.password
             }
-
-            console.log(options.body)
             
             const resource = await fetcher("../../php/api/login.php", options);
             return resource;
@@ -38,6 +36,25 @@ export async function apiCom(data, action){
             return resource;
         }
 
+        case "game:init": {
+            options.method = "GET";
+            const resource = await fetcher(`../../php/api/game_instance.php?` + data, options);
+            return resource;
+        }
+
+        case "game:over": {
+            options.method = "POST";
+            options.body = {
+                gameInstanceId: data.gameInstanceId,
+                score: data.score,
+                foodItems: data.foodItems,
+                trolls: data.trolls
+            }
+
+            const resource = await fetcher(`../../php/api/game_instance.php`, options);
+            return resource;
+        }
+
         default: {
             console.warn("Unknown action: " + action);
             return null;
@@ -61,7 +78,7 @@ async function fetcher(url, options){
         if(!response.ok){
             const errorMessage = await response.text();
 
-            throw new Error(`Error: ${errorMessage}`);
+            throw new Error(`${errorMessage}`);
         };
 
         return await response.json();

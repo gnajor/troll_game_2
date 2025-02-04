@@ -12,10 +12,13 @@ class PrepStation{
 
     render(){
         const station = document.createElement("div");
-        station.id = "station_" + this.prepMethod;
+        station.id = this.prepMethod;
         station.className = "station";
-        station.textContent = this.prepMethod;
         this.parent.appendChild(station);
+
+        const station_name = document.createElement("span");
+        station_name.textContent = this.prepMethod;
+        station.appendChild(station_name);
 
         station.addEventListener("dragover", (event) => event.preventDefault());
         station.addEventListener("drop", this.onDropCheckAndStartPrep.bind(this));  
@@ -47,3 +50,12 @@ PubSub.subscribe({
         const prepStation = new PrepStation(details);
     }
 });
+
+
+/* 
+Grill
+Fry
+Boil
+Bake
+
+*/

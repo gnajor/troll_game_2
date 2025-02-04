@@ -14,9 +14,7 @@ function renderStationsContainer(details){
     parent.appendChild(stationsContainer);
     stationsContainer.id = elementId;
 
-    const stationsToRender = data.length > 0 ? data.length : 6;
-
-    console.log(data);
+    const stationsToRender = data.length > 0 ? data.length : 4;
 
     for(let i = 0; i < stationsToRender ; i++){
         PubSub.publish({

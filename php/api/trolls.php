@@ -27,14 +27,13 @@ if($_GET["trolls"] === "all"){
 
     $sql = "SELECT t.id,
                 t.name,
-                t.patience,
                 GROUP_CONCAT(i.id) AS ingredient_ids,
                 GROUP_CONCAT(i.name) AS ingredient_names,
-                GROUP_CONCAT(RANDOM() % (ti.max - ti.min + 1) + ti.min) AS ingredient_amounts 
-    FROM trolls t
-    LEFT JOIN troll_ingredients ti ON t.id = ti.troll_id
-    LEFT JOIN ingredients i ON i.id = ti.ingredient_id
-    GROUP BY t.id";
+                GROUP_CONCAT(ABS(RANDOM()) % (ti.max - ti.min + 1) + ti.min) AS ingredient_amounts 
+            FROM trolls t
+            LEFT JOIN troll_ingredients ti ON t.id = ti.troll_id
+            LEFT JOIN ingredients i ON i.id = ti.ingredient_id
+            GROUP BY t.id";
 
     $stmt = $pdo->query($sql);
     $trolls = $stmt->fetchAll(PDO::FETCH_ASSOC);

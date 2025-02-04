@@ -15,14 +15,12 @@ class BarStation{
         const barStation = document.createElement("div");
         barStation.className = "barStation";
         barStation.id = "barStation" + (this.id + 1);
-        barStation.textContent = "barStation_" + this.id;
 
         barStation.addEventListener("dragover", (event) => event.preventDefault());
         barStation.addEventListener("drop", this.onDropCheckAndStartTrans.bind(this));
         
         return barStation;
     }
-
 
     render(){
         if(this.parent){

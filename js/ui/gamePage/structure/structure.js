@@ -1,24 +1,38 @@
 import { PubSub } from "../../../utils/pubsub.js";
 
-function renderStructure(parentSelector, data){
+export function renderStructure(parentSelector, data){
     const parent = document.querySelector(parentSelector);
-    console.log(data.foodItems)
-    const prepMethod = data.foodItems.map(foodItem => foodItem.prep_method);
 
     if(!parent){
         console.error("Parent Element Error");
         return;
     }
 
+    const prepMethodRepeat = data.foodItems.map(foodItem => foodItem.prep_method);
+    const prepMethods = prepMethodRepeat.filter((prepMethod, index) => {
+            return prepMethodRepeat.indexOf(prepMethod) === index; 
+        });
+
+
     parent.innerHTML = 
-    `<div id="wrapper">
-        <div id="timer"></div>
-        <div id="bin"></div>
-        <div id="dining_room"></div>
-        <div id="bar"></div>
-        <div id="kitchen"></div>
-        <div id="inventory"></div>
+    `<div id="game_page">
+        <div id="top_container">
+            <div id="score"></div>
+            <div id="timer"></div>
+            <div id="bin"></div>
+        </div>
+        <div id="main_content">
+            <div id="dining_room"></div>
+            <div id="bar"></div>
+            <div id="kitchen"></div>
+            <div id="inventory"></div>
+        </div>
     </div>`;
+
+    PubSub.publish({
+        event: "renderScore",
+        details: "#score"
+    });
 
     PubSub.publish({
         event: "renderTimer",
@@ -55,7 +69,7 @@ function renderStructure(parentSelector, data){
         details: {
             "parentId": "#kitchen",
             "elementId": "prep_stations_container",
-            "data": prepMethod,
+            "data": prepMethods,
             "renderStationEvent": "renderPrepStations"
         }
     });
@@ -70,10 +84,3 @@ function renderStructure(parentSelector, data){
         }
     });
 }
-
-PubSub.subscribe({
-    event: "renderStructure",
-    listener: (details) => {
-        renderStructure(details.parent, details.data);
-    }
-})

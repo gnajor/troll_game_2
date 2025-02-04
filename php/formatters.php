@@ -1,6 +1,5 @@
 <?php
 function format_and_insert_data($data, $type){
-    /* echo var_dump($data); */
 
     $formatted_data = [];
 
@@ -21,11 +20,10 @@ function format_and_insert_data($data, $type){
             $formatted_item["dispose_time"] = $data_item["dispose_time"];
         }
         else{
-            $formatted_item["patience"] = $data_item["patience"];
+            /* image */
         }
 
         for($i = 0; $i < count($ids); $i++){
-            /* $sql = "INSERT INTO ()"; */
             $formatted_item["ingredients"][] = [
                 "id" => intval($ids[$i]),
                 "name" => $names[$i],

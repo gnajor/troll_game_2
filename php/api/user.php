@@ -23,22 +23,33 @@ if(!isset($parameters["name"], $parameters["password"])){
     send_as_json(400, ["error" => "parameters are invalid"]);
 }
 
-$name = $parameters["name"];
-$password = $parameters["password"];
 $pdo = get_pdo_connection();
 
-$stmt = $pdo->prepare("SELECT name FROM users WHERE name=:name");
-$stmt->execute(["name" => $name]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if($parameters["name"] === "guest"){
+    $name = $parameters["name"] . "_" . uniqid();
+    $password = $parameters["password"];
 
-if($user){
-    send_as_json(["error" => "user already exists"]);
+    $stmt = $pdo->prepare("INSERT INTO users (name, password) VALUES (:name, :password) RETURNING id");
+    $stmt->execute(["name" => $name, "password" => $password]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    send_as_json(201,  $user["id"]);
 }
+else{
+    $name = $parameters["name"];
+    $password = $parameters["password"];
 
-$stmt = $pdo->prepare("INSERT INTO users (name, password) VALUES (:name, :password)");
-$stmt->execute(["name" => $name, "password" => $password]);
+    $stmt = $pdo->prepare("SELECT name FROM users WHERE name=:name");
+    $stmt->execute(["name" => $name]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-send_as_json(201, ["success" => "user added"]);
+    if($user){
+        send_as_json(400, ["error" => "user already exists"]);
+    }
+
+    $stmt = $pdo->prepare("INSERT INTO users (name, password) VALUES (:name, :password)");
+    $stmt->execute(["name" => $name, "password" => $password]);
+    send_as_json(201, ["success" => "user added"]);
+}
 
 function send_as_json($status, $data = []){
     header("Content-Type: application/json");

@@ -1,9 +1,10 @@
 import { PubSub } from "../../../utils/pubsub.js";
 import { Timer } from "../../../entities/timer/timer.js";
+import { pageHandler } from "../../../pageHandler/pageHandler.js";
 
 function renderTimer(parentId){
     const parent = document.querySelector(parentId);
-    const gameDuration = 180;
+    const gameDuration = 60;
 
     if(!parent){
         console.error("Parent Element Error");
@@ -12,7 +13,7 @@ function renderTimer(parentId){
 
     const timerElement = document.createElement("div");
     timerElement.id = "timerContainer";
-    timerElement.textContent = makeIntoMinutes(180);
+    timerElement.textContent = makeIntoMinutes(gameDuration);
     parent.appendChild(timerElement);
 
     const mainTimer = new Timer(
@@ -21,7 +22,7 @@ function renderTimer(parentId){
             timerElement.textContent = makeIntoMinutes(gameDuration - elapsedTime);
         },
         function(){
-            console.log("game over");
+            pageHandler.handleGameOver();
         }
     );
 

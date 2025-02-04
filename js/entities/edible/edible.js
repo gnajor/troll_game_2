@@ -23,6 +23,7 @@ export class Edible{
     create(){
         const edibleElement = document.createElement("div");
         edibleElement.id = "edible_" + this.id;
+        edibleElement.className = "edible";
         edibleElement.setAttribute("draggable", true);
         edibleElement.addEventListener("dragstart", this.onDragStart.bind(this));
 

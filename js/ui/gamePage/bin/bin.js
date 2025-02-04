@@ -14,10 +14,6 @@ function renderBin(parentId){
     bin.id = "bin_container";
     parent.appendChild(bin);
 
-    const img = document.createElement("img");
-    img.setAttribute("src", "../../../media/images/objects/trash.gif");
-    bin.appendChild(img);
-
     bin.addEventListener("dragover", (event) => event.preventDefault());
     bin.addEventListener("drop", function onDropCheckAndDestroy(event){
         const id = Number(event.dataTransfer.getData("text/plain")); 
