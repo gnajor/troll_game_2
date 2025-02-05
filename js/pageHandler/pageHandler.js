@@ -9,6 +9,7 @@ import * as timer from "../ui/gamePage/timer/timer.js"
 import * as login from "../ui/loginPage/loginPage.js";
 import * as startPage from "../ui/startPage/startPage.js";
 import * as score from "../ui/gamePage/score/score.js";
+import * as gameOverModal from "../ui/gamePage/gameOverModal/gameOverModal.js";
 import { App } from "../../index.js";
 import { apiCom } from "../utils/apiCom.js";
 import { renderLoginPage } from "../ui/loginPage/loginPage.js";
@@ -30,6 +31,10 @@ export const pageHandler = {
         if(status){
             wrapper.classList.add("start");
             wrapper.classList.add("new_z_index");
+
+            wrapper.addEventListener("transitionend", () => {
+                pageHandler.initGameAndRender();
+            }, {once: true});
         }
         else{
             wrapper.classList.remove("start");
@@ -39,8 +44,13 @@ export const pageHandler = {
         }
     },
 
-    handleMenuPageRender(loggedIn = false){
-        renderMenuPage(this.parentId, loggedIn);
+    handleMenuPageRender(){
+        if(App.loggedIn){
+            renderMenuPage(this.parentId, true);
+        }
+        else{
+            renderMenuPage(this.parentId);
+        }
     },
 
     async initGameOnServer(){
@@ -68,6 +78,10 @@ export const pageHandler = {
         renderStructure(this.parentId, App.gameData);
     },
 
+    handleGamePlayAgain(){
+        App.clearGameData();
+    },
+
     handleGameOver(){
         apiCom({
             score: App.score,
@@ -90,10 +104,11 @@ export const pageHandler = {
         if(resourse){  
             App.setUserId(resourse.id);
             App.setLocalStorage(username, password);
-            this.handleMenuPageRender(true);
+            App.setLoggedIn(true);
+            this.handleMenuPageRender();
         }
         else{
-            this.handleLoginRender(true);
+            this.handleLoginRender();
         }
     },
 

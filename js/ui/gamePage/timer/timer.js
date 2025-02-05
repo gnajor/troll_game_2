@@ -23,9 +23,12 @@ function renderTimer(parentId){
         },
         function(){
             pageHandler.handleGameOver();
+            PubSub.publish({
+                event: "getGamePageParent",
+                details: null,
+            });
         }
     );
-
     mainTimer.start();
 }
 

@@ -52,10 +52,6 @@ export function renderMenuPage(parentId, loggedIn = false){
     startButton.addEventListener("click", () => {
         pageHandler.handlePageAnimation(true);
         pageHandler.initGameOnServer();
-
-        parent.addEventListener("transitionend", () => {
-            pageHandler.initGameAndRender();
-        }, {once: true});
     });
     
     scoreboardButton.addEventListener("click", () => {

@@ -16,6 +16,7 @@ export function renderStructure(parentSelector, data){
 
     parent.innerHTML = 
     `<div id="game_page">
+        <div id="menu_modal"></div>
         <div id="top_container">
             <div id="score"></div>
             <div id="timer"></div>
@@ -84,3 +85,15 @@ export function renderStructure(parentSelector, data){
         }
     });
 }
+
+PubSub.subscribe({
+    event: "getGamePageParent",
+    listener: () => {
+        const parentId = "#menu_modal";
+
+        PubSub.publish({
+            event: "renderGameOverModal",
+            details: parentId
+        });
+    }
+})

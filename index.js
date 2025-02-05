@@ -8,12 +8,13 @@ export const App = {
     score: 0,
     userId: null,
     gameInstanceId: null,
+    loggedIn: false,
     gameData: {},
 
     initApp(){
+        Timer.StartGameTimer();
         if(localStorage.getItem("user")){
             const userData = this.getLocalStorage();
-            Timer.StartGameTimer();
             pageHandler.handleLogin(userData.username, userData.password);
         }
         else{
@@ -45,6 +46,10 @@ export const App = {
         localStorage.setItem("user", data);
     },
 
+    setLoggedIn(value){
+        this.loggedIn = value;
+    },
+
     clearGameData(){
         this.score = 0;
         this.gameInstanceId = null;
@@ -56,6 +61,7 @@ export const App = {
         this.userId = null;
         this.gameInstanceId = null;
         this.gameData = {}
+        this.loggedIn = false;
     },
 
     clearLocalStorage(){

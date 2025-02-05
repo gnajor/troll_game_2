@@ -18,5 +18,5 @@ export function renderStartPage(parentId){
         parent.addEventListener("click", () => {
             pageHandler.handleMenuPageRender();
         }, {once: true});
-    }, 1000)
+    }, 100);
 }
