@@ -225,8 +225,7 @@
                     "minAmount": 10,
                     "maxAmount": 12
                 }
-            ],
-            "imageSrc": "https://example.com/grug.png"
+            ]
         },
         {
             "name": "Snarg",
@@ -241,8 +240,7 @@
                     "minAmount": 10,
                     "maxAmount": 12
                 }
-            ],
-            "imageSrc": "https://example.com/snarg.png"
+            ]
         },
         {
             "name": "Bork",
@@ -257,8 +255,7 @@
                     "minAmount": 8,
                     "maxAmount": 12
                 }
-            ],
-            "imageSrc": "https://example.com/bork.png"
+            ]
         },
         {
             "name": "Klog",
@@ -273,8 +270,7 @@
                     "minAmount": 10,
                     "maxAmount": 12
                 }
-            ],
-            "imageSrc": "https://example.com/klog.png"
+            ]
         },
         {
             "name": "Zorp",
@@ -289,8 +285,7 @@
                     "minAmount": 10,
                     "maxAmount": 12
                 }
-            ],
-            "imageSrc": "https://example.com/zorp.png"
+            ]
         },
         {
             "name": "Frim",
@@ -305,8 +300,7 @@
                     "minAmount": 5,
                     "maxAmount": 10
                 }
-            ],
-            "imageSrc": "https://example.com/frim.png"
+            ]
         },
         {
             "name": "Grimm",
@@ -321,8 +315,7 @@
                     "minAmount": 10,
                     "maxAmount": 12
                 }
-            ],
-            "imageSrc": "https://example.com/grimm.png"
+            ]
         }
     ]
 }
