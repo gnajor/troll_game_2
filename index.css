@@ -245,7 +245,7 @@ body{
 #game_page #menu_modal:has(#menu_content){
     border:2px solid var(--gray_colour);
     background-color: var(--yellow_colour);
-    padding: 1rem;
+    padding: 1rem; 
 }
 
 #menu_content{
@@ -341,6 +341,11 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     font-size:2rem;
     color: var(--white_colour);
+}
+
+#game_page:has(#menu_content) #score_container{
+    color: var(--black_colour);
+    font-weight: bold;
 }
 
 #game_page #main_content{
@@ -606,6 +611,6 @@ body{
 
 @media only screen and (max-width: 1600px) {
     html{
-        font-size: 14px;
+        font-size: 12px;
     }
 }

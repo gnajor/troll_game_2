@@ -13,6 +13,11 @@ function renderGameOverModal(parentId){
     const playAgainButton = parent.querySelector("#play_again");
     const backToMenuButton = parent.querySelector("#back_to_menu_button");
 
+    PubSub.publish({
+        event: "renderScore",
+        details: "#display_score"
+    });
+
     playAgainButton.addEventListener("click", () => {
         pageHandler.handlePageAnimation(true);
         pageHandler.handleGamePlayAgain();

@@ -4,7 +4,7 @@ import { pageHandler } from "../../../pageHandler/pageHandler.js";
 
 function renderTimer(parentId){
     const parent = document.querySelector(parentId);
-    const gameDuration = 60;
+    const gameDuration = 120;
 
     if(!parent){
         console.error("Parent Element Error");
@@ -22,11 +22,11 @@ function renderTimer(parentId){
             timerElement.textContent = makeIntoMinutes(gameDuration - elapsedTime);
         },
         function(){
-            pageHandler.handleGameOver();
             PubSub.publish({
                 event: "getGamePageParent",
                 details: null,
             });
+            pageHandler.handleGameOver();
         }
     );
     mainTimer.start();

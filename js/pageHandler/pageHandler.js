@@ -17,6 +17,7 @@ import { renderStructure } from "../ui/gamePage/structure/structure.js";
 import { renderMenuPage } from "../ui/menuPage/menuPage.js";
 import { renderStartPage } from "../ui/startPage/startPage.js";
 import { renderRegisterPage } from "../ui/registerPage/registerPage.js";
+import { PubSub } from "../utils/pubsub.js";
 
 export const pageHandler = {
     parentId: "#wrapper",
@@ -82,8 +83,13 @@ export const pageHandler = {
         App.clearGameData();
     },
 
-    handleGameOver(){
-        apiCom({
+    async handleGameOver(){
+        PubSub.publish({
+            event: "renderNewScore",
+            details: App.score
+        });
+
+        await apiCom({
             score: App.score,
             gameInstanceId: App.gameInstanceId,
             foodItems: App.gameData.foodItems,
