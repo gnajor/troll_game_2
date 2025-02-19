@@ -24,15 +24,9 @@ export async function apiCom(data, action){
             return resource;
         }
 
-        case "game:get-trolls": {
+        case "game:get-data": {
             options.method = "GET";
-            const resource = await fetcher(`../../php/api/trolls.php?` + data, options);
-            return resource;
-        }
-
-        case "game:get-food": {
-            options.method = "GET";
-            const resource = await fetcher(`../../php/api/food_items.php?` + data, options);
+            const resource = await fetcher(`../../php/api/game.php?` + data, options);
             return resource;
         }
 

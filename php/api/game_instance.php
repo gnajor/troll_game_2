@@ -2,6 +2,7 @@
 require_once("../formatters.php");
 require_once("../db_com.php");
 require_once("../inserters.php");
+require_once("../utils.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     header("Access-Control-Allow-Headers: *");
@@ -42,26 +43,6 @@ else if($request_method === "POST"){
             "id" => $game_instance_id
         ]);
 
-        insert_game_instance_data(
-            $game_instance_id,
-            "troll",
-            $trolls,
-            $pdo
-        );
-        insert_game_instance_data(
-            $game_instance_id,
-            "food",
-            $food_items,
-            $pdo
-        );
-
         send_as_json(201, ["success" => "score has been added"]);
     }
-}
-
-function send_as_json($status, $data = []){
-    header("Content-Type: application/json");
-    http_response_code($status);
-    echo json_encode($data, JSON_PRETTY_PRINT);
-    exit(); 
 }

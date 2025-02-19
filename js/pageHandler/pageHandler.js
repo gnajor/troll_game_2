@@ -11,7 +11,7 @@ import * as startPage from "../ui/startPage/startPage.js";
 import * as score from "../ui/gamePage/score/score.js";
 import * as gameOverModal from "../ui/gamePage/gameOverModal/gameOverModal.js";
 import { App } from "../../index.js";
-import { apiCom } from "../utils/apiCom.js";
+import { apiCom } from "../apiCom/apiCom.js";
 import { renderLoginPage } from "../ui/loginPage/loginPage.js";
 import { renderStructure } from "../ui/gamePage/structure/structure.js";
 import { renderMenuPage } from "../ui/menuPage/menuPage.js";
@@ -68,12 +68,11 @@ export const pageHandler = {
         App.setGameInstanceId(game_instance_id);
     },
 
-    async initGameAndRender(){
-        const food_items = await apiCom("foodItems=all", "game:get-food");
-        const trolls = await apiCom("trolls=all", "game:get-trolls");
+    async initGameAndRender(gamemode){
+        const game_data = await apiCom("game=" + gamemode, "game:get-data");
 
-        App.setGameData("trolls", trolls);
-        App.setGameData("foodItems", food_items);  
+        App.setGameData("trolls", game_data.trolls);
+        App.setGameData("foodItems", game_data.food);  
         this.handlePageAnimation(false);
 
         renderStructure(this.parentId, App.gameData);

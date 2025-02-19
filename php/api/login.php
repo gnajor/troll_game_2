@@ -1,6 +1,8 @@
 <?php
 require_once("../formatters.php");
 require_once("../db_com.php");
+require_once("../utils.php");
+
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     header("Access-Control-Allow-Headers: *");
@@ -36,10 +38,3 @@ if(!$user){
 }
 
 send_as_json(200, $user);
-
-function send_as_json($status, $data = []){
-    header("Content-Type: application/json");
-    http_response_code($status);
-    echo json_encode($data, JSON_PRETTY_PRINT);
-    exit(); 
-}

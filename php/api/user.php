@@ -1,6 +1,8 @@
 <?php
 require_once("../formatters.php");
 require_once("../db_com.php");
+require_once("../utils.php");
+
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     header("Access-Control-Allow-Headers: *");
@@ -49,11 +51,4 @@ else{
     $stmt = $pdo->prepare("INSERT INTO users (name, password) VALUES (:name, :password)");
     $stmt->execute(["name" => $name, "password" => $password]);
     send_as_json(201, ["success" => "user added"]);
-}
-
-function send_as_json($status, $data = []){
-    header("Content-Type: application/json");
-    http_response_code($status);
-    echo json_encode($data, JSON_PRETTY_PRINT);
-    exit(); 
 }
