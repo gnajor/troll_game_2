@@ -114,7 +114,7 @@ function insert_game_mode_content($data, $entity, $pdo){
             return;
         }
 
-        for($i = 0; $i < (count($data) - 4); $i++){
+        for($i = 0; $i < round(count($data) * 0.75); $i++){ //make more or remove less
             $item = $data[$i];
             $item_name = $item["name"];
 

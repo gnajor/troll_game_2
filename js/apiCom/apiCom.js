@@ -49,6 +49,12 @@ export async function apiCom(data, action){
             return resource;
         }
 
+        case "game:get-users-score": {
+            options.method = "GET";
+            const resource = await fetcher(`../../php/api/game_instance.php?` + data, options);
+            return resource;
+        }
+
         default: {
             console.warn("Unknown action: " + action);
             return null;

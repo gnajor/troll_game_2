@@ -211,7 +211,8 @@ body{
 }
 
 #login_page button#back,
-#register_page button#back{
+#register_page button#back,
+#game_mode_page button#back{
     background-color: transparent;
     text-align: left;
     font-size: 1.5rem;
@@ -224,12 +225,12 @@ body{
 
 
 
-#wrapper:has(#menu_page){
+#wrapper:has(#menu_page),
+#wrapper:has(#game_mode_page){
     background-image: url("./media/images/background_login.jpg");
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    cursor: pointer;
 
     display: flex;
     justify-content: center;
@@ -237,12 +238,14 @@ body{
     min-height: 100vh;
 }
 
-#menu_page *{
+#menu_page *,
+#game_mode_page{
     filter: blur(0.7px);
 }
 
 #menu_page #menu_modal,
-#game_page #menu_modal:has(#menu_content){
+#game_page #menu_modal:has(#menu_content),
+#game_mode_page #menu_modal{
     border:2px solid var(--gray_colour);
     background-color: var(--yellow_colour);
     padding: 1rem; 
@@ -255,6 +258,7 @@ body{
     align-items: center;
     padding: 2.5rem 8rem;
     border: 5px solid var(--gray_colour);
+    position: relative;
 }
 
 #menu_content button{
@@ -290,7 +294,7 @@ body{
 }
 
 #game_page #menu_content{
-    padding: 4rem 8rem;
+    padding: 4rem 7rem;
 }
 
 #game_page #menu_modal:has(#menu_content){
@@ -346,6 +350,10 @@ body{
 #game_page:has(#menu_content) #score_container{
     color: var(--black_colour);
     font-weight: bold;
+}
+
+#game_page:has(#menu_content) #main_content{
+    pointer-events: none;
 }
 
 #game_page #main_content{
@@ -594,6 +602,12 @@ body{
     border-radius: 3px;
 }
 
+#game_page #dining_room #trolls_container .troll,
+#game_page #bar #bar_stations_container .barStation,
+#game_page #inventory #edibles_container > div{
+    background-color: #d6c6ae;
+}
+
 #game_page .progress.rotting{
     background-color: red;
 }
@@ -602,10 +616,82 @@ body{
     background-color: black;
 }
 
-#game_page #dining_room #trolls_container .troll,
-#game_page #bar #bar_stations_container .barStation,
-#game_page #inventory #edibles_container > div{
-    background-color: #d6c6ae;
+
+#wrapper:has(#scoreboard_page){
+    background-image: url("./media/images/leaderboard_background.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#scoreboard_page #scoreboard_modal{
+    background-color: var(--yellow_colour);
+    padding: 1rem;
+    border: 2px solid var(--gray_colour);
+}
+
+#scoreboard_page #top{
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--yellow_colour);
+}
+
+#scoreboard_page #filter_selector{
+    background: var(--yellow_colour);
+    border: 2px solid var(--black_sec_colour);
+    padding: 0.25rem;
+}
+
+#scoreboard_page h1{
+    font-size: 3.5rem;
+    color: var(--black_colour);
+}
+
+#scoreboard_page #modal_content{
+    border: 5px solid var(--gray_colour);
+    padding-bottom:2rem;
+    max-height: 80vh;
+    overflow-y: scroll;
+    scrollbar-color: var(--gray_colour) var(--yellow_colour);
+    scrollbar-width: thin;
+    position: relative;
+}
+
+#scoreboard_page #scoreboard{
+    border-spacing: 7rem 1rem;
+    color: var(--black_sec_colour);
+}
+
+#scoreboard_page #scoreboard th{
+    font-size: 2rem;
+}
+
+#scoreboard_page #scoreboard td{
+    font-size: 1.75rem;
+    text-align: center;
+}
+
+#scoreboard_page #back{
+    background-color: transparent;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    line-height: 1;
+    left:0;
+    bottom: 0;
+    width: 5rem;
+}
+
+#scoreboard_page{
+    filter: blur(0.7px);
 }
 
 

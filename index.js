@@ -9,7 +9,9 @@ export const App = {
     userId: null,
     gameInstanceId: null,
     loggedIn: false,
+    gameMode: null,
     gameData: {},
+    usersScoreData: {},
 
     initApp(){
         Timer.StartGameTimer();
@@ -50,10 +52,25 @@ export const App = {
         this.loggedIn = value;
     },
 
+    setGameMode(mode){
+        this.gameMode = mode; 
+    },
+
+    setUsersScoreData(gameMode, data){
+        this.usersScoreData[gameMode] = data;
+    },
+
     clearGameData(){
         this.score = 0;
         this.gameInstanceId = null;
-        this.gameData = {}
+        this.gameData = {};
+    },
+
+    clearTotalGameData(){
+        this.score = 0;
+        this.gameInstanceId = null;
+        this.gameData = {};
+        this.gameMode = null;
     },
 
     clearUserGameData(){
@@ -68,6 +85,10 @@ export const App = {
         localStorage.clear();
     },
 
+    clearUsersScoreData(){
+        this.usersScoreData = {};
+    },
+
     getLocalStorage(){
         const userData = localStorage.getItem("user");
         const decryptedUserData = decrypt(userData);
@@ -80,4 +101,3 @@ export const App = {
 };
 
 App.initApp();
-

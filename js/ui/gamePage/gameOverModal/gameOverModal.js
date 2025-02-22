@@ -19,13 +19,13 @@ function renderGameOverModal(parentId){
     });
 
     playAgainButton.addEventListener("click", () => {
-        pageHandler.handlePageAnimation(true);
+        pageHandler.handlePageAnimation(true, pageHandler.initGameAndRender);
         pageHandler.handleGamePlayAgain();
         pageHandler.initGameOnServer();
     });
 
     backToMenuButton.addEventListener("click", () => {
-        pageHandler.handleMenuPageRender();
+        pageHandler.handleMenuPageRender(true);
     });
 }
 

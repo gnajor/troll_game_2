@@ -5,6 +5,10 @@ import { Timer } from "../timer/timer.js";
 export class Edible{
     static edibleInstances = [];
 
+    static removeEdibles(){
+        Edible.edibleInstances = [];
+    }
+
     constructor(details){
         const {data, parentId, id} = details;
         this.edible = data;

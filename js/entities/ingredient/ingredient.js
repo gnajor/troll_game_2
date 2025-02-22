@@ -5,6 +5,11 @@ export class Ingredient{
         troll: []
     };
 
+    static removeIngredients(){
+        Ingredient.ingredientInstances.edible = [];
+        Ingredient.ingredientInstances.troll = [];
+    }
+
     constructor(details){
         const {parent, data, id, type} = details;
         this.parent = parent;

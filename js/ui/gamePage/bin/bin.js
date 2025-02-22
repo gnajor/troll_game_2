@@ -18,6 +18,7 @@ function renderBin(parentId){
     bin.addEventListener("drop", function onDropCheckAndDestroy(event){
         const id = Number(event.dataTransfer.getData("text/plain")); 
         const edibleInstance = Edible.edibleInstances.find(edible => edible.id === id);
+        edibleInstance.timer.stop();
         
         if(edibleInstance.prepared && edibleInstance.startedTransform){
             edibleInstance.destroy();

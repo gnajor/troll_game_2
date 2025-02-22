@@ -50,11 +50,10 @@ export function renderMenuPage(parentId, loggedIn = false){
     const scoreboardButton = parent.querySelector("#scoreboard_button");
     
     startButton.addEventListener("click", () => {
-        pageHandler.handlePageAnimation(true);
-        pageHandler.initGameOnServer();
+        pageHandler.handleGameModePageRender();
     });
     
     scoreboardButton.addEventListener("click", () => {
-        /* pageHandler. */
+        pageHandler.handlePageAnimation(true, pageHandler.handleScoreboardPageRender);
     });
 }

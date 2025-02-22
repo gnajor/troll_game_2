@@ -10,6 +10,7 @@ import * as login from "../ui/loginPage/loginPage.js";
 import * as startPage from "../ui/startPage/startPage.js";
 import * as score from "../ui/gamePage/score/score.js";
 import * as gameOverModal from "../ui/gamePage/gameOverModal/gameOverModal.js";
+import * as scoreboardUser from "../ui/scoreboardPage/scoreboardUser/scoreboardUser.js";
 import { App } from "../../index.js";
 import { apiCom } from "../apiCom/apiCom.js";
 import { renderLoginPage } from "../ui/loginPage/loginPage.js";
@@ -18,6 +19,10 @@ import { renderMenuPage } from "../ui/menuPage/menuPage.js";
 import { renderStartPage } from "../ui/startPage/startPage.js";
 import { renderRegisterPage } from "../ui/registerPage/registerPage.js";
 import { PubSub } from "../utils/pubsub.js";
+import { renderGameModePage } from "../ui/gameModePage/gameModePage.js";
+import { renderScoreboardPage } from "../ui/scoreboardPage/scoreboard/scoreboard.js";
+import { Edible } from "../entities/edible/edible.js";
+import { Ingredient } from "../entities/ingredient/ingredient.js";
 
 export const pageHandler = {
     parentId: "#wrapper",
@@ -26,16 +31,13 @@ export const pageHandler = {
         renderStartPage(this.parentId);
     },
 
-    handlePageAnimation(status){
+    handlePageAnimation(status, func = undefined){
         const wrapper = document.querySelector(this.parentId);
 
-        if(status){
+        if(status && func){
             wrapper.classList.add("start");
             wrapper.classList.add("new_z_index");
-
-            wrapper.addEventListener("transitionend", () => {
-                pageHandler.initGameAndRender();
-            }, {once: true});
+            wrapper.addEventListener("transitionend", func.bind(this), {once: true});
         }
         else{
             wrapper.classList.remove("start");
@@ -45,7 +47,11 @@ export const pageHandler = {
         }
     },
 
-    handleMenuPageRender(){
+    handleMenuPageRender(cameFromGame = false){
+        if(cameFromGame){
+            App.clearTotalGameData();
+        }
+
         if(App.loggedIn){
             renderMenuPage(this.parentId, true);
         }
@@ -64,15 +70,16 @@ export const pageHandler = {
             App.setUserId(guestUserId);
         }
         
-        const game_instance_id = await apiCom("userId=" + App.userId, "game:init");
+        const game_instance_id = await apiCom(`userId=${App.userId}&game=${App.gameMode}`, "game:init");
         App.setGameInstanceId(game_instance_id);
     },
 
-    async initGameAndRender(gamemode){
-        const game_data = await apiCom("game=" + gamemode, "game:get-data");
+    async initGameAndRender(){
+        const game_data = await apiCom("game=" + App.gameMode, "game:get-data");
 
         App.setGameData("trolls", game_data.trolls);
         App.setGameData("foodItems", game_data.food);  
+
         this.handlePageAnimation(false);
 
         renderStructure(this.parentId, App.gameData);
@@ -83,6 +90,9 @@ export const pageHandler = {
     },
 
     async handleGameOver(){
+        Ingredient.removeIngredients();
+        Edible.removeEdibles();
+
         PubSub.publish({
             event: "renderNewScore",
             details: App.score
@@ -91,13 +101,19 @@ export const pageHandler = {
         await apiCom({
             score: App.score,
             gameInstanceId: App.gameInstanceId,
-            foodItems: App.gameData.foodItems,
-            trolls: App.gameData.trolls,
         }, "game:over");
     },
 
     handleLoginRender(){
         renderLoginPage(this.parentId);
+    },
+
+    handleStoreGameMode(mode_num){
+        App.setGameMode(mode_num);
+    },
+
+    handleGameModePageRender(){
+        renderGameModePage(this.parentId);
     },
 
     async handleLogin(username, password){
@@ -115,6 +131,33 @@ export const pageHandler = {
         else{
             this.handleLoginRender();
         }
+    },
+
+    async handleGetScoreboardUsers(gameMode){
+        const data = App.usersScoreData[`game${gameMode}`];
+
+        if(!data){
+            const resource = await apiCom(`game=${gameMode}&score=all`, "game:get-users-score");
+            App.setUsersScoreData(`game${gameMode}`, resource);
+        
+            if(resource){
+                return resource;
+            }
+        }
+        else{
+            return data;
+        }
+    },
+
+    async handleScoreboardPageRender(){
+        const users = await this.handleGetScoreboardUsers(1);
+
+        renderScoreboardPage(this.parentId, users);
+        this.handlePageAnimation(false);
+    },
+
+    handleScoreBoardReset(){
+        App.clearUsersScoreData();
     },
 
     handleLogout(){

@@ -19,9 +19,6 @@ function format_and_insert_data($data, $type){
             $formatted_item["rot_time"] = $data_item["rot_time"];
             $formatted_item["dispose_time"] = $data_item["dispose_time"];
         }
-        else{
-            /* image */
-        }
 
         for($i = 0; $i < count($ids); $i++){
             $formatted_item["ingredients"][] = [

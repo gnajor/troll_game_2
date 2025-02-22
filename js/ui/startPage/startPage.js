@@ -14,9 +14,9 @@ export function renderStartPage(parentId){
                             <img src="../../../media/images/characters/troll_3.gif">
                         </div>`;
 
-    setTimeout(() => {
+    setTimeout(() => { //needs to be there because otherwise when you click the logout button it will instantly call the func down below
         parent.addEventListener("click", () => {
             pageHandler.handleMenuPageRender();
         }, {once: true});
-    }, 100);
+    }, 1);
 }

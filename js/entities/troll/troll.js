@@ -123,7 +123,7 @@ class Troll{
             }
         });
 
-        if((trollIngredients.filter(trollIngredient => trollIngredient.amount === 0)).length === trollIngredients.length){
+        if((trollIngredients.filter(trollIngredient => trollIngredient.ingredient.amount < 1)).length === trollIngredients.length){
             score += this.points.trollDone;
             this.destroy();
         };

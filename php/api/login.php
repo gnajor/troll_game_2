@@ -29,7 +29,7 @@ $name = $parameters["name"];
 $password = $parameters["password"];
 $pdo = get_pdo_connection();
 
-$stmt = $pdo->prepare("SELECT password, name, id FROM users WHERE password=:password AND name=:name");
+$stmt = $pdo->prepare("SELECT password, name, id FROM User WHERE password=:password AND name=:name");
 $stmt->execute(["password" => $password, "name" => $name]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
